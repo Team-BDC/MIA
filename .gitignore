@@ -247,3 +247,6 @@ pip-selfcheck.json
 *.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/react,venv,django,vscode,python
+
+D:\valleyinternship\MIA\mia-react-app\.eslintcache
+D:\valleyinternship\MIA\mia-react-app\package-lock.json
