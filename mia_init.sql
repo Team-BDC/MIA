@@ -1,6 +1,7 @@
 CREATE DATABASE IF NOT EXISTS miadb;
 USE miadb;
 
+
 CREATE TABLE IF NOT EXISTS `User` (
 	`user_id` varchar(36) NOT NULL,
     `user_name` varchar(30), 

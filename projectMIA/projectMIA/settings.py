@@ -43,8 +43,10 @@ INSTALLED_APPS = [
     'rest_framework',
     # 장고 메인 앱
     'mia', 
-    #cors. api는 3000 포트, 장고는 8000포트에 있음
+    # cors. api는 3000 포트, 장고는 8000포트에 있음
     'corsheaders',
+    # swagger
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
