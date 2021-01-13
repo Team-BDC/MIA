@@ -91,8 +91,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'miadb',
-        'USER' : 'root',
-        'PASSWORD' : 'plmoknijb98!',
+        'USER' : 'mia',
+        'PASSWORD' : '12344321',
         'HOST' : 'localhost',
         'PORT' : '3306'
     }
