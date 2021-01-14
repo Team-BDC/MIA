@@ -15,7 +15,7 @@ ENV PYTHONUNBUFFERED 1
 RUN python3.8 -m venv env
 RUN /bin/bash -c "source env/bin/activate"
 
-COPY ../requirements.txt requirements.txt
+COPY ./requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
 EXPOSE 8000

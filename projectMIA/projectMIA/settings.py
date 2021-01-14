@@ -27,7 +27,7 @@ SECRET_KEY = '^9b91)!*dw%pv4_hzjk7=(g_q*sbsk%us2ft=(6ry5+8^waln^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['docker-api', 'django_app','*']
 
 
 # Application definition
@@ -100,6 +100,30 @@ DATABASES = {
     }
 }
 
+# Database
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
+"""
+원본 데이터베이스 코드
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}"""
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'miadb',
+        'USER': 'mia',
+        'PASSWORD': '12344321',
+        'HOST': 'mysql_db',
+        'PORT': '3306',
+    }
+}
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -150,3 +174,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'mia-react-app', 'build', 'static')
 ]
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')

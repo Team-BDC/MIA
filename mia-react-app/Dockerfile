@@ -17,7 +17,7 @@ RUN apt-get clean \
 # RUN npm install --no-cache
 # RUN npm install -g react-scripts
 
-RUN npm install --silent
+RUN npm install --silent; exit 0
 RUN npm install react-scripts@3.4.1 -g --silent
 RUN npm install -g react-router-dom
 RUN npm install
