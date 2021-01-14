@@ -112,16 +112,16 @@ DATABASES = {
     }
 }"""
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'miadb',
-        'USER': 'mia',
-        'PASSWORD': '12344321',
-        'HOST': 'mysql_db',
-        'PORT': '3306',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'miadb',
+#         'USER': 'mia',
+#         'PASSWORD': '12344321',
+#         'HOST': 'mysql_db',
+#         'PORT': '3306',
+#     }
+# }
 
 
 
