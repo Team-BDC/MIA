@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
-// import Nothing from "../../others/nothing";
 import PhotoGallery from "react-photo-gallery";
 import { Loader } from "./Loader";
 import { UnsplashImage } from "./UnsplashImage";
-
-// import { connect } from "react-redux";
-// import ImageTheatre from "../../others/imageTheatre/imageTheatre";
 
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
