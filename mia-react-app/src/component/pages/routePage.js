@@ -1,7 +1,7 @@
 import MainLayout from "../layout/MainLayout";
 import { Route, Switch } from "react-router-dom";
 import Camera from "./camera";
-import Gallery from "./gallery";
+import Gallery from "./galleryPage/gallery.js";
 import Main from "./main";
 import Result from "./result";
 import Signin from "./signin";
