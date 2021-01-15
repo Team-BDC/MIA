@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PhotoGallery from "react-photo-gallery";
 import { Loader } from "./Loader";
 import { UnsplashImage } from "./UnsplashImage";
 

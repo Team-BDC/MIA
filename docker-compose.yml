@@ -1,0 +1,90 @@
+version: "3.8"
+
+services:
+  mysql_db:
+    image: mysql:latest
+    container_name: mysql_db
+    restart: always
+    networks:
+      - app-tier
+    volumes:
+      - ./mysql/db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    cap_add:
+      - SYS_NICE
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    environment:
+      - MYSQL_DATABASE=miadb
+      - MYSQL_USER=mia
+      - MYSQL_PASSWORD=12344321
+      - MYSQL_ROOT_PASSWORD=1234
+
+  django_app:
+    build:
+      context: ./projectMIA
+      dockerfile: Dockerfile
+    # command: gunicorn hello_django.wsgi.application --bind 0.0.0.0:8000
+    ports:
+      - 8000
+    depends_on:
+      - mysql_db
+    links:
+      - mysql_db:mysql_db
+    restart: always
+    volumes:
+      - ./projectMIA:/app
+    env_file:
+      - ./projectMIA/env.dev
+    networks:
+      - app-tier
+
+  react_app:
+    build:
+      context: ./mia-react-app
+    container_name: react_app
+    restart: "on-failure"
+    expose:
+      - 3000
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOOLING=true
+    volumes:
+      - ./mia-react-app:/app
+      - /app/node_modules
+    stdin_open: true
+    tty: true
+    networks:
+      - app-tier
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: "on-failure"
+    ports:
+      - "81:81"
+      - "8000:8000"
+    volumes:
+      - ./projectMIA/staticfiles:/static
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - django_app
+      - react_app
+    networks:
+      - app-tier
+
+# redis:
+#   image: "redis:alpine"
+#   networks:
+#     - app-tier
+#   ports:
+#     - "6379:6379"
+
+networks:
+  app-tier:
+    driver: bridge
+
+volumes:
+  static_volume:
