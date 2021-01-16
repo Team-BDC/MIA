@@ -1,0 +1,20 @@
+.Content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55vh;
+}
+
+.Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Title {
+  font-family: sans-serif;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
