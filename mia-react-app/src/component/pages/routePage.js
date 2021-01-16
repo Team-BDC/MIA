@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Camera from "./camera";
 import Gallery from "./galleryPage/gallery.js";
 import Main from "./main";
-import Result from "./result";
+import Result from "./resultPage/resultPage";
 import Signin from "./signin";
 import Signup from "./signup";
 import Mypage from "./mypage";
