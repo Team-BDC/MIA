@@ -1,33 +1,42 @@
-import React, { useRef, Component } from "react";
+import React, { useRef, Component, useState } from "react";
+import SmallButton from "../shared/SmallButton";
 import Webcam from "react-webcam";
 
 function Camera() {
   const videoConstraints = {
-    width: 1280,
-    height: 720,
+    width: 800,
+    height: 600,
     facingMode: "user",
   };
 
   const WebcamCapture = () => {
     const webcamRef = React.useRef(null);
+    const [imgSrc, setImgSrc] = React.useState(null);
 
     const capture = React.useCallback(() => {
       const imageSrc = webcamRef.current.getScreenshot();
-    }, [webcamRef]);
+      setImgSrc(imageSrc);
+    }, [webcamRef, setImgSrc]);
+
+    return (
+      <>
+        <Webcam
+          audio={false}
+          height={600}
+          ref={webcamRef}
+          screenshotFormat="image/jpeg"
+          width={800}
+          videoConstraints={videoConstraints}
+        />
+        <SmallButton onClick={capture}>화면 캡처</SmallButton>
+        {imgSrc && <img src={imgSrc} />}
+      </>
+    );
   };
 
   return (
     <>
-      <Webcam
-        audio={false}
-        height={720}
-        ref={WebcamCapture.webcamRef}
-        screenshotFormat="image/jpeg"
-        width={1280}
-        videoConstraints={videoConstraints}
-      />
-      {/* 캡처 기능 추가하기 */}
-      {/* <button onClick={WebcamCapture.capture}>Capture photo</button> */}
+      <WebcamCapture />
     </>
   );
 }
