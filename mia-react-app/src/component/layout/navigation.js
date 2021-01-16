@@ -13,7 +13,7 @@ function Navigation() {
               onClick={(e) => {
                 e.preventDefault();
                 setOption(1);
-                window.alert("디즈니");
+                window.alert("디즈니"); 
               }}
               buttonName="디즈니"
             >
