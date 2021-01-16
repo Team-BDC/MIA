@@ -24,8 +24,6 @@ function Camera() {
       setImgSrc(imageSrc);
     }, [webcamRef, setImgSrc]);
 
-    const Download = () => {};
-
     return (
       <>
         <div className={cx("Content")}>
@@ -38,11 +36,13 @@ function Camera() {
             videoConstraints={videoConstraints}
           />
           <br></br>
-          {imgSrc && <img src={imgSrc} />}
+          {imgSrc && <img src={imgSrc} id="capture" />}
         </div>
         <div className={cx("Button")}>
           <SmallButton onClick={capture}>화면 캡처</SmallButton>
-          <SmallButton>다운로드</SmallButton>
+          <a href={imgSrc} download>
+            <SmallButton>다운로드</SmallButton>
+          </a>
         </div>
       </>
     );
