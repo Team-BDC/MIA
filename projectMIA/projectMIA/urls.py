@@ -20,7 +20,8 @@ from django.conf.urls import url
 from rest_framework import routers, permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi 
-from mia import views
+from rest_framework_jwt.views 
+from mia import views import obtain_jwt_token, verify_jwt_token, refresh_jwt_token
 
 schema_view = get_schema_view(
     openapi.Info(title="MIA API", 
