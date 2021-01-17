@@ -11,11 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os, datetime
 
-# JWT를 이용한 회원 
-from .conf.rest_framework import *
-from .conf.rest_framework_jwt import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
@@ -90,13 +87,25 @@ WSGI_APPLICATION = 'projectMIA.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'miadb',
+#         'USER' : 'mia',
+#         'PASSWORD' : '12344321',
+#         'HOST' : 'mysql_db',
+#         'PORT' : '3306'
+#     }
+# }
+
+#docker아님
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'miadb',
         'USER' : 'mia',
         'PASSWORD' : '12344321',
-        'HOST' : 'mysql_db',
+        'HOST' : 'localhost',
         'PORT' : '3306'
     }
 }
@@ -187,3 +196,6 @@ STATICFILES_DIRS = [
 
 ]
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+
+# 인증에 사용할 커스텀 User
+AUTH_USER_MODEL = 'accounts.user'

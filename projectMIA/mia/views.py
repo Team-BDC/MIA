@@ -10,38 +10,38 @@ from .serializers import *
 from .models import *
 from django.views import View 
 
-# 리액트 연동 테스트용 뷰. viewset을 이용, get, post, put, delete 가능
-class TestView(viewsets.GenericViewSet, mixins.ListModelMixin, View):
-    serializer_class = TestSerializer
+# # 리액트 연동 테스트용 뷰. viewset을 이용, get, post, put, delete 가능
+# class TestView(viewsets.GenericViewSet, mixins.ListModelMixin, View):
+#     serializer_class = TestSerializer
     
-    @swagger_auto_schema(query_serializer=TestSerializer)
-    def list(self, request, *args, **kwargs):
-        return super().list(request, *args, **kwargs)
+#     @swagger_auto_schema(query_serializer=TestSerializer)
+#     def list(self, request, *args, **kwargs):
+#         return super().list(request, *args, **kwargs)
     
-    def get_queryset(self):
-        conditions = {
-            'text': self.kwargs.get("text", None),
-        }
-        conditions = {key: val for key, val in conditions.items() if val is not None}
+#     def get_queryset(self):
+#         conditions = {
+#             'text': self.kwargs.get("text", None),
+#         }
+#         conditions = {key: val for key, val in conditions.items() if val is not None}
 
-        tests = Test.objects.filter(**conditions)
-        if not tests.exists():
-            raise Http404
+#         tests = Test.objects.filter(**conditions)
+#         if not tests.exists():
+#             raise Http404
 
-        return tests
+#         return tests
 
-    def add(self, request): 
-        tests = Test.objects.filter(**request.data)
-        if tests.exists():
-            return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
+#     def add(self, request): 
+#         tests = Test.objects.filter(**request.data)
+#         if tests.exists():
+#             return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
 
-        test_serializer = TestSerializer(data=request.data, partial=True)
-        if not test_serializer.is_valid():
-            return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
+#         test_serializer = TestSerializer(data=request.data, partial=True)
+#         if not test_serializer.is_valid():
+#             return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
 
-        test = testt_serializer.save()
+#         test = testt_serializer.save()
 
-        return Response(TestSerializer(test).data, status=status.HTTP_201_CREATED)
+#         return Response(TestSerializer(test).data, status=status.HTTP_201_CREATED)
 
 
 
