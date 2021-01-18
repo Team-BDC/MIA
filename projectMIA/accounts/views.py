@@ -1,45 +1,48 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 # from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from rest_framework import permissions, status, mixins, viewsets
-# from rest_framework.decorators import api_view
-# from rest_framework.response import Response
-# from rest_framework.views import APIView
-from .serializers import *
 
-# from google.oauth2 import id_token
-# from google.auth.transport import requests
+from .serializers import *
+from .models import *
 
 User = get_user_model()
 
-
-class IsLoggedInAsUserOrSuperUser(permissions.BasePermission):
-    """
-    Object-level permission to only allow owners of an account to view and edit the user information.
-    Also allows superuser to view and edit them.
-    """
-    message = 'You must be logged in as the user to access.'
-
+class IsSuperOrAuthorOrReadonly(permissions.BasePermission):
+    # 커스텀 permission : 포스트 작성자는 수정, superuser는 삭제 가능
     def has_object_permission(self, request, view, obj):
-        # Instance must have an attribute named `owner` or `user`.
-        is_superuser = request.user.is_superuser
-        if is_superuser:
-            return True
+        # 인증된 유저는 목록 조회 / 포스팅 등록 가능 
+        def has_permission(self, request, view):
+            return request.user.is_authenticated
+        
+        # 작성자는 수정 허용
+        def has_object_permission(self, request, views, obj):
+            # 조회는 True
+            if request.method in permissions.SAFE_METHODS:
+                return True
+            # superuer는 삭제 허용
+            if (request.method == 'DELETE'):
+                return request.user.is_superuser
+            # PUT, DELETE는 작성자
+            return obj.author == request.user
+            
 
-        elif request.method in permissions.SAFE_METHODS:
-            is_logged_in_as_user = obj.id == request.user.id
-            return is_logged_in_as_user
-        return False
-
-
-class UserViewSet(mixins.ListModelMixin,
-                  mixins.CreateModelMixin,
+# Custom ViewSet - create, list, retrive, update, destroy from GenericViewSet
+class UserViewSet(mixins.CreateModelMixin,
+                  mixins.ListModelMixin,
                   mixins.RetrieveModelMixin,
                   mixins.UpdateModelMixin,
                   mixins.DestroyModelMixin,
                   viewsets.GenericViewSet):
     queryset = User.objects.filter(is_active=True)
     serializer_class = UserSerializer
-    permission_classes = (IsLoggedInAsUserOrSuperUser, )
+    permission_classes = (IsSuperOrAuthorOrReadonly,)
+
+

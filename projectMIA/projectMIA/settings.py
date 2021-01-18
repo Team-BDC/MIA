@@ -123,14 +123,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ],
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-    ],
-    'DEFAULT_PARSER_CLASSES': [
-        'rest_framework.parsers.JSONParser',
-        'rest_framework.parsers.FormParser',
-        'rest_framework.parsers.MultiPartParser'
-    ]
 }
 
 # JWT settings 
@@ -141,8 +133,30 @@ JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
     'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=30),
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(hours=1),
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'api.custom_responses.my_jwt_response_handler'
+
+    'JWT_ENCODE_HANDLER': 'rest_framework_jwt.utils.jwt_encode_handler',
+    'JWT_DECODE_HANDLER': 'rest_framework_jwt.utils.jwt_decode_handler',
+    'JWT_PAYLOAD_HANDLER': 'rest_framework_jwt.utils.jwt_payload_handler',
+    'JWT_PAYLOAD_GET_USER_ID_HANDLER': 'rest_framework_jwt.utils.jwt_get_user_id_from_payload_handler',
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'rest_framework_jwt.utils.jwt_response_payload_handler',
+    # 'JWT_RESPONSE_PAYLOAD_HANDLER': 'projectMIA.settings.jwt_response_payload_handler',
+
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
+    'JWT_AUTH_COOKIE': None,
 }
+
+# def jwt_response_payload_handler(token, user=None, request=None):
+
+#     response = {
+#         'token': token,
+#         'user': {
+#             'user_id': user.user_id,
+#             'user_name': user.user_username,
+#             'user_email': user.user_email,
+#         }
+#     }
+
+#     return response
 
 
 # Password validation
@@ -195,7 +209,7 @@ STATICFILES_DIRS = [
     # os.path.join(BASE_DIR, 'mia-react-app', 'build', 'static')
 
 ]
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
-# 인증에 사용할 커스텀 User
-AUTH_USER_MODEL = 'accounts.user'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

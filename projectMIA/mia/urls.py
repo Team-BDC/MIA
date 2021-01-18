@@ -1,8 +1,10 @@
 from django.urls import path,include
+from rest_framework import routers
 from django.conf import settings 
-from .views import *
+from .views import GalleryView
+
 
 urlpatterns = [ 
-    # path("v1/test", TestView.as_view({"get": "list", "post": "add"}), name="tests"),
-    # path("v1/test/<int:test_num>", TestView.as_view({"get": "list"}), name="test"),
-]
+    path("gallery", GalleryView.as_view({"get": "list", "post": "add"}), name="galleries"),
+    path("gallery/<int:gallery_id>", GalleryView.as_view({"get": "list"}), name="gallery"),
+] 
