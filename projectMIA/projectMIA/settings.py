@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',  # restframework
+    'knox',            # knox
     'corsheaders',     # cors. api는 3000 포트, 장고는 8000포트에 있음
     'drf_yasg',        # swagger
     'mia',             # 장고 메인 앱
@@ -122,6 +123,7 @@ REST_FRAMEWORK = {
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
+        'knox.auth.TokenAuthentication',
     ],
 }
 

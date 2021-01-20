@@ -3,7 +3,7 @@ from .models import *
 
 @admin.register(Gallery)
 class GalleryAdmin(admin.ModelAdmin):
-    list_display = ['gallery_id', 'user']
+    list_display = ['gallery_id', 'user', 'created_at']
     search_filds = ['gallery_id']
 
 @admin.register(Image)

@@ -32,6 +32,7 @@ urlpatterns = [
     
     # app url
     path('api/v1/user/', include('accounts.urls')),
+    path('api/v1/user/auth', include('knox.urls')),
     path('api/v1/mia/', include('mia.urls')),
 
     # jwt 인증

@@ -11,6 +11,7 @@ from django.db import models
 class Gallery(models.Model):
     gallery_id = models.CharField(primary_key=True, max_length=36)
     user = models.ForeignKey('AuthUser', models.DO_NOTHING)
+    created_at = models.DateTimeField()
 
     class Meta:
         managed = False

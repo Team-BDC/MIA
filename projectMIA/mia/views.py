@@ -21,10 +21,10 @@ class GalleryView(viewsets.GenericViewSet, mixins.ListModelMixin, View):
     def get_queryset(self):
         conditions = {
             'gallery_id': self.kwargs.get("gallery_id", None),
+            'created_at': self.kwargs.get("created_at", None),
             'user': self.kwargs.get("user", None),
         }
         conditions = {key: val for key, val in conditions.items() if val is not None}
-
         galleries = Gallery.objects.filter(**conditions)
         if not galleries.exists():
             raise Http404
@@ -44,5 +44,15 @@ class GalleryView(viewsets.GenericViewSet, mixins.ListModelMixin, View):
 
         return Response(GallerySerializer(gallery).data, status=status.HTTP_201_CREATED)
 
+
+
+class GalleryViewSet(viewsets.ModelViewSet):
+    serializer_class = GallerySerializer
+
+    def get_queryset(self):
+        return Gallery.objects.all().order_by("-created_at")
+
+    def perform_create(self, serializer):
+        serializer.save()
 
 

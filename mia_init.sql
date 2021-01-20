@@ -9,9 +9,14 @@ USE miadb;
 -- 	primary key(`gallery_id`) 
 -- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+DROP TABLE Gallery;
+DROP TABLE Image;
+
+
 CREATE TABLE IF NOT EXISTS Gallery (
 	gallery_id varchar(36) NOT NULL,
     user_id INT NOT NULL,
+    created_at DATETIME(6) NOT NULL, 
     FOREIGN KEY(user_id) REFERENCES auth_user(id),
     PRIMARY KEY(gallery_id)
 );

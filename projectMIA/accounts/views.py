@@ -8,31 +8,15 @@ from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
-from rest_framework import permissions, status, mixins, viewsets
+from rest_framework import permissions, status, mixins, viewsets, generics
 
 from .serializers import *
 from .models import *
 
+from knox.models import AuthToken
+
 User = get_user_model()
 
-class IsSuperOrAuthorOrReadonly(permissions.BasePermission):
-    # 커스텀 permission : 포스트 작성자는 수정, superuser는 삭제 가능
-    def has_object_permission(self, request, view, obj):
-        # 인증된 유저는 목록 조회 / 포스팅 등록 가능 
-        def has_permission(self, request, view):
-            return request.user.is_authenticated
-        
-        # 작성자는 수정 허용
-        def has_object_permission(self, request, views, obj):
-            # 조회는 True
-            if request.method in permissions.SAFE_METHODS:
-                return True
-            # superuer는 삭제 허용
-            if (request.method == 'DELETE'):
-                return request.user.is_superuser
-            # PUT, DELETE는 작성자
-            return obj.author == request.user
-            
 
 # Custom ViewSet - create, list, retrive, update, destroy from GenericViewSet
 class UserViewSet(mixins.CreateModelMixin,
@@ -43,6 +27,48 @@ class UserViewSet(mixins.CreateModelMixin,
                   viewsets.GenericViewSet):
     queryset = User.objects.filter(is_active=True)
     serializer_class = UserSerializer
-    permission_classes = (IsSuperOrAuthorOrReadonly,)
 
 
+class RegistrationAPI(generics.GenericAPIView):
+    serializer_class = CreateUserSerializer
+
+    def post(self, request, *args, **kwargs):
+        if len(request.data["username"]) < 6 or len(request.data["password"]) < 4:
+            body = {"message": "short field"}
+            return Response(body, status=status.HTTP_400_BAD_REQUEST)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return Response(
+            {
+                "user": CurrentUserSerializer(
+                    user, context=self.get_serializer_context()
+                ).data,
+                "token": AuthToken.objects.create(user),
+            }
+        )
+
+
+class LoginAPI(generics.GenericAPIView):
+    serializer_class = LoginUserSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data
+        return Response(
+            {
+                "user": CurrentUserSerializer(
+                    user, context=self.get_serializer_context()
+                ).data,
+                "token": AuthToken.objects.create(user),
+            }
+        )
+
+
+class UserAPI(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = CurrentUserSerializer
+
+    def get_object(self):
+        return self.request.user

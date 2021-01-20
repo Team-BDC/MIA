@@ -30,9 +30,18 @@ function Header({ title, backFunc, params, noBackBtn }) {
         아이디/비번 찾기
       </NavLink>
 
+      {/* 로그인 페이지에서 연결 시켜야함 */}
       <NavLink
         className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
-        to="/signin"
+        to="/auth"
+        activeStyle={activeStyle}
+      >
+        로그인/회원가입
+      </NavLink>
+
+      {/* <NavLink
+        className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+        to="/login"
         activeStyle={activeStyle}
       >
         로그인
@@ -43,7 +52,7 @@ function Header({ title, backFunc, params, noBackBtn }) {
         activeStyle={activeStyle}
       >
         회원가입
-      </NavLink>
+      </NavLink> */}
       <NavLink
         className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
         to="/camera"
@@ -79,6 +88,14 @@ function Header({ title, backFunc, params, noBackBtn }) {
       >
         로그아웃
       </button>
+      {/* api 통신 테스트 */}
+      <NavLink
+        className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+        to="/test"
+        activeStyle={activeStyle}
+      >
+        테스트
+      </NavLink>
     </header>
   );
 }
