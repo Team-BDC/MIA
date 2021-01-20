@@ -10,7 +10,9 @@
     "@testing-library/user-event": "^12.1.10",
     "autoprefixer": "^9.8.6",
     "axios": "^0.21.1",
+    "bootstrap": "^4.5.3",
     "classnames": "^2.2.6",
+    "multer": "^1.4.2",
     "postcss": "^7.0.35",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -47,5 +49,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "express": "^4.17.1",
+    "webpack-dev-middleware": "^4.1.0"
   }
 }

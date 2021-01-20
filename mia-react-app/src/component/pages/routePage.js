@@ -7,6 +7,7 @@ import Result from "./resultPage/resultPage";
 import Signin from "./signin";
 import Signup from "./signup";
 import Mypage from "./mypage";
+import Upload from "./UploadPage/Upload"
 // import Find from "./find";
 
 const RoutePage = () => {
@@ -19,6 +20,7 @@ const RoutePage = () => {
         <Route exact path={"/signup"} component={Signup} />
         <Route exact path={"/signin"} component={Signin} />
         <Route exact path={"/camera"} component={Camera} />
+        <Route exact path={"/upload"} component={Upload} />
         <Route exact path={"/result"} component={Result} />
         <Route exact path={`/${userId}/gallery`} component={Gallery} />
         <Route exact path={`/${userId}/mypage`} component={Mypage} />
