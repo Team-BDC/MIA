@@ -8,6 +8,27 @@
 from django.db import models
 
 
+class Gallery(models.Model):
+    gallery_id = models.CharField(primary_key=True, max_length=36)
+    user = models.ForeignKey('AuthUser', models.DO_NOTHING)
+    created_at = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'Gallery'
+
+
+class Image(models.Model):
+    image_number = models.AutoField(primary_key=True)
+    gallery = models.ForeignKey(Gallery, models.DO_NOTHING)
+    image_name = models.CharField(max_length=50, blank=True, null=True)
+    image_path = models.CharField(max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'Image'
+
+
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -116,43 +137,3 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
-
-
-class Test(models.Model):
-    text = models.TextField()
-
-    def __str__(self):
-        return self.text
-
-
-class Gallery(models.Model):
-    gallery_id = models.CharField(primary_key=True, max_length=36)
-    user = models.ForeignKey('User', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'Gallery'
-
-
-class Image(models.Model):
-    image_number = models.AutoField(primary_key=True)
-    gallery = models.ForeignKey(Gallery, models.DO_NOTHING)
-    image_name = models.CharField(max_length=50, blank=True, null=True)
-    image_path = models.CharField(max_length=100, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'Image'
-
-
-class User(models.Model):
-    user_id = models.CharField(primary_key=True, max_length=36)
-    user_name = models.CharField(max_length=30, blank=True, null=True)
-    user_paswd = models.CharField(max_length=30, blank=True, null=True)
-    user_email = models.CharField(max_length=50, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'User'
-
-    

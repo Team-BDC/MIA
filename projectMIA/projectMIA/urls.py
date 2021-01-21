@@ -16,40 +16,48 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
+from django.conf.urls.static import static
 from django.conf.urls import url
 from rest_framework import routers, permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi 
 from mia import views
+from . import views
 
-schema_view = get_schema_view(
-    openapi.Info(title="MIA API", 
-                default_version='v1', 
-                description="Project MIA를 위한 API 문서",
-                terms_of_service="https://www.google.com/policies/terms/",
-                contact=openapi.Contact(email="eunji980310@gmail.com"),
-                license=openapi.License(name="BSD License"),),
-    public=True,
-    permission_classes=(permissions.AllowAny,),
-)
+# from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
+from .schema_view import schema_view_v1
 
-router = routers.DefaultRouter()
-router.register('mia', views.TestView, 'mia')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
-    path('mia/', include(("mia.urls", "mia"))),
+    
+    # app url
+    path('api/v1/user/', include('accounts.urls')),
+    path('api/v1/user/auth', include('knox.urls')),
+    path('api/v1/mia/', include('mia.urls')),
     path('model/', views.call_model.as_view()),
+
+    # react 연결
+    path("", views.ReactAppView.as_view()),
+
+    # jwt 인증
+    # path('jwt/token/', obtain_jwt_token),  # POST :JWT 토큰 발행
+    # path('jwt/token/verify/', verify_jwt_token),  # GET : JWT 유효성 검증
+    # path('jwt/token/refresh/', refresh_jwt_token),  # POST : JWT 토큰 갱신 
+
     url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
 
+# 디버그 상태일때만 swagger 접근 
 if settings.DEBUG:
     urlpatterns += [
-        re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-        re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-        re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-
+        re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view_v1.without_ui(cache_timeout=0), name='schema-json'),
+        re_path(r'^swagger/$', schema_view_v1.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+        re_path(r'^redoc/$', schema_view_v1.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
