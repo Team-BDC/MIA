@@ -88,10 +88,15 @@
   ### 1-4. DB : setting
 
  - init.sql : 스키마 생성 ->
+   MySQL 8.0 Command Line Client 
+  ```
+  mysql> create schema 'miadb'
+  ```
    MySQL Workbench에서 해당 파일 불러와서 실행(Execute)
 
- - settings.py : 
-   name과 password 수정
+
+ - settings.py(MIA/projectMIA/setting.py) : 
+   user, password 수정
   
   
 ## 2. Project Setup (Windows)
