@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./AuthForm.css";
+import SmallButton from "../shared/SmallButton";
 
 const cx = classNames.bind(styles);
 
@@ -61,13 +62,13 @@ const AuthForm = ({
         />
       </div>
       {kind === "register" ? (
-        <div className={cx("auth-button")} onClick={onRegister}>
+        <SmallButton onClick={onRegister} className={cx("auth-button")}>
           {kind.toUpperCase()}
-        </div>
+        </SmallButton>
       ) : (
-        <div className={cx("auth-button")} onClick={onLogin}>
+        <SmallButton onClick={onLogin} className={cx("auth-button")}>
           {kind.toUpperCase()}
-        </div>
+        </SmallButton>
       )}
       {kind === "register" ? (
         <Link to={`/auth/login`} className={cx("description")}>

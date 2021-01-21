@@ -58,17 +58,10 @@ input {
 
 .auth-button {
     height: 3rem;
-    background: blueviolet;
 
-    margin-top: 2rem;
-    border: 1px solid blueviolet;
-    border-radius: 2px;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     color: white;
     font-weight: 600;
@@ -76,14 +69,6 @@ input {
 
     cursor: pointer;
     user-select: none;
-}
-
-.auth-button :hover {
-  background: purple;
-}
-
-.auth-button :active {
-  background: purple;
 }
   
   .description {
@@ -94,6 +79,6 @@ input {
     flex-direction: row-reverse;
 
     font-size: 1.2rem;
-    color: blue;
+    color: black;
   }
 

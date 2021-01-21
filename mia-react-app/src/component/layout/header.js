@@ -7,7 +7,6 @@ function Header({ title, backFunc, params, noBackBtn, onLogout }) {
     fontWeight: "800",
   };
 
-  //const [isLoginUser, setIsLoginUser] = useState(false); //로그인 여부를 알려줄겨 나중에 기능 구현 시작되면!
   // 로그인 여부에 따라 밑에 달라질 것
   //(로그인 x : 메인화면, 로그인, 회원가입, 카메라, 결과물)
   //(로그인 o : 메인화면, 카메라, 결과물, 갤러리, 마이페이지, 로그아웃)
@@ -30,7 +29,6 @@ function Header({ title, backFunc, params, noBackBtn, onLogout }) {
         아이디/비번 찾기
       </NavLink>
 
-      {/* 로그인 페이지에서 연결 시켜야함 */}
       <NavLink
         className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
         to="/auth/login"
@@ -39,20 +37,6 @@ function Header({ title, backFunc, params, noBackBtn, onLogout }) {
         로그인/회원가입
       </NavLink>
 
-      {/* <NavLink
-        className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
-        to="/login"
-        activeStyle={activeStyle}
-      >
-        로그인
-      </NavLink>
-      <NavLink
-        className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
-        to="/signup"
-        activeStyle={activeStyle}
-      >
-        회원가입
-      </NavLink> */}
       <NavLink
         className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
         to="/camera"
@@ -60,6 +44,7 @@ function Header({ title, backFunc, params, noBackBtn, onLogout }) {
       >
         카메라
       </NavLink>
+      {/* 결과페이지는 나중에 nav에서 지우고, 카메라/파일업로드에서 자동으로 연결되도록 수정할 것 */}
       <NavLink
         className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
         to="/result"

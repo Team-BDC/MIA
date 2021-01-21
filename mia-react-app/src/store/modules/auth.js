@@ -25,6 +25,7 @@ const CHECK_USER_FAILURE = "auth/CHECK_USER_FAILURE";
 
 const SET_USER_TEMP = "auth/SET_USER_TEMP";
 
+// 로그아웃
 export const logout = () => ({
   type: LOGOUT,
 });
@@ -37,6 +38,7 @@ export const logoutFailure = () => ({
   type: LOGOUT_FAILURE,
 });
 
+// 로그인 정보 유지 및 체크
 export const checkUser = () => ({
   type: CHECK_USER,
 });
@@ -61,6 +63,7 @@ export const setUserTemp = ({ id, username, token }) => ({
   },
 });
 
+// 회원가입
 export const register = () => ({
   type: REGISTER,
 });
@@ -80,6 +83,7 @@ export const registerFailure = (error) => ({
   },
 });
 
+// 로그인
 export const login = () => ({
   type: LOGIN,
 });
@@ -115,6 +119,9 @@ export const changeInput = ({ name, value }) => ({
   },
 });
 
+// 회원가입 api 통신
+// /api/v1/user/register/ 에 post로 값 연결
+// 해당 endpoint는 git-wiki 참고
 const registerEpic = (action$, state$) => {
   return action$.pipe(
     ofType(REGISTER),
@@ -143,6 +150,9 @@ const registerEpic = (action$, state$) => {
   );
 };
 
+// 로그인 api 통신
+// /api/v1/user/login/ 에 post로 값 연결
+// 해당 endpoint는 git-wiki 참고
 const loginEpic = (action$, state$) => {
   return action$.pipe(
     ofType(LOGIN),
@@ -171,6 +181,9 @@ const loginEpic = (action$, state$) => {
   );
 };
 
+// 로그아웃 api 통신
+// knox token 이용
+// 성공하면 localStorage에서 현재 유저 정보를 지운다
 const logoutEpic = (action$, state$) => {
   return action$.pipe(
     ofType(LOGOUT),
@@ -190,7 +203,6 @@ const logoutEpic = (action$, state$) => {
         )
         .pipe(
           map((response) => {
-            // success시 localStorage에서 userInfo 삭제.
             localStorage.removeItem("userInfo");
             return logoutSuccess();
           }),
@@ -215,7 +227,7 @@ const checkUserEpic = (action$, state$) => {
         ? JSON.parse(localStorage.getItem("userInfo")).token
         : null;
       return ajax
-        .get(`/api/v1/user/`, {
+        .get(`/api/v1/user/user/`, {
           "Content-Type": "application/json",
           Authorization: `token ${token}`,
         })

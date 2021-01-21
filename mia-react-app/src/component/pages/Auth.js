@@ -1,5 +1,4 @@
 import React from "react";
-import AuthForm from "../auth/AuthForm";
 import AuthContainer from "../../containers/AuthContainer";
 
 const Auth = ({ match }) => {

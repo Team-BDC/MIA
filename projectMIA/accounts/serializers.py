@@ -2,9 +2,11 @@ from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 # from django.contrib.auth.models import User
 
-User = get_user_model()
+# User = get_user_model()
 
 # 회원가입 시리얼라이저 
 # 공식문서에는 create, update만. 
