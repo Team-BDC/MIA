@@ -12,12 +12,12 @@ urlpatterns = [
     # path("gallery/<int:gallery_id>", GalleryView.as_view({"get": "list"}), name="gallery"),
 
     # # test redux 
-    # path("gallery_test", gallery_list, name="gallery-list"),
-    # path("gallery_test/<int:gallery_id>", gallery_detail, name="gallery-detail"),
+     path("gallery_test", gallery_list, name="gallery-list"),
+     path("gallery_test/<int:gallery_id>", gallery_detail, name="gallery-detail"),
 
-    path("v1/test", TestView.as_view({"get": "list", "post": "add"}), name="tests"),
-    path("v1/test/<int:test_num>", TestView.as_view({"get": "list"}), name="test"),
-    path('model/',views.call_model.as_view())
+    #path("v1/test", TestView.as_view({"get": "list", "post": "add"}), name="tests"),
+    #path("v1/test/<int:test_num>", TestView.as_view({"get": "list"}), name="test"),
+    path('model/',call_model.as_view())
 
 ] 
 
