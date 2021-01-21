@@ -11,6 +11,16 @@
 > - FRONTEND (React Webapp Client)
 > - DB (MySQL)
 > - AI
+>> * tensorflow==1.14(<=1.15.2)
+>> * python 3.7
+>> * numpy==1.16.4
+>> * scipy==1.4.1
+>> * keras==2.3.1
+>> * pillow==latest
+>> * cmake(for window)
+>> * dlib(for window)
+>> * pywin32(for window)
+
 
 ## 1. Project Setup (Mac)
 ### 1-1. 환경 세팅
