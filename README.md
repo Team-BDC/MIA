@@ -10,6 +10,7 @@
 > - BACKEND (Django APP Server)
 > - FRONTEND (React Webapp Client)
 > - DB
+> - AI
 
 ## 1. Project Setup (Mac)
 ### 1-1. 환경 세팅
