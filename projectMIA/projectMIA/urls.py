@@ -22,8 +22,9 @@ from rest_framework import routers, permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi 
 from mia import views
+from . import views
 
-from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
+# from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 from .schema_view import schema_view_v1
 
 
@@ -35,10 +36,13 @@ urlpatterns = [
     path('api/v1/user/auth', include('knox.urls')),
     path('api/v1/mia/', include('mia.urls')),
 
+    # react 연결
+    path("", views.ReactAppView.as_view()),
+
     # jwt 인증
-    path('jwt/token/', obtain_jwt_token),  # POST :JWT 토큰 발행
-    path('jwt/token/verify/', verify_jwt_token),  # GET : JWT 유효성 검증
-    path('jwt/token/refresh/', refresh_jwt_token),  # POST : JWT 토큰 갱신 
+    # path('jwt/token/', obtain_jwt_token),  # POST :JWT 토큰 발행
+    # path('jwt/token/verify/', verify_jwt_token),  # GET : JWT 유효성 검증
+    # path('jwt/token/refresh/', refresh_jwt_token),  # POST : JWT 토큰 갱신 
 ]
 
 # 디버그 상태일때만 swagger 접근 

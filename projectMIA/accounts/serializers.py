@@ -56,8 +56,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 class CurrentUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'password', 'email',
-                  'first_name', 'last_name')
+        fields = ('id', 'username')
 
 
 # 로그인 시리얼라이저

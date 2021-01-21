@@ -2,11 +2,13 @@ import { useEffect } from "react";
 import Header from "./header";
 import Footer from "./footer";
 import Navigation from "./navigation";
+import HeaderContainer from "../../containers/HeaderContainer";
 
 const MainLayout = ({ children }) => {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
+      <HeaderContainer />
       <main className="flex w-full h-screen">
         <Navigation />
         <section className="w-full p-4">

@@ -1,7 +1,7 @@
 import { useHistory, NavLink } from "react-router-dom";
 import { useState } from "react";
 
-function Header({ title, backFunc, params, noBackBtn }) {
+function Header({ title, backFunc, params, noBackBtn, onLogout }) {
   const activeStyle = {
     color: "white",
     fontWeight: "800",
@@ -33,7 +33,7 @@ function Header({ title, backFunc, params, noBackBtn }) {
       {/* 로그인 페이지에서 연결 시켜야함 */}
       <NavLink
         className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
-        to="/auth"
+        to="/auth/login"
         activeStyle={activeStyle}
       >
         로그인/회원가입
@@ -85,6 +85,7 @@ function Header({ title, backFunc, params, noBackBtn }) {
         className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
         to="/home"
         activeStyle={activeStyle}
+        onClick={onLogout}
       >
         로그아웃
       </button>
