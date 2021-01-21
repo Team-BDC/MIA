@@ -35,7 +35,7 @@ urlpatterns = [
     path('api/v1/user/', include('accounts.urls')),
     path('api/v1/user/auth', include('knox.urls')),
     path('api/v1/mia/', include('mia.urls')),
-    path('model/', views.call_model.as_view()),
+    #path('model/', views.call_model.as_view()),
 
     # react 연결
     path("", views.ReactAppView.as_view()),
@@ -45,9 +45,9 @@ urlpatterns = [
     # path('jwt/token/verify/', verify_jwt_token),  # GET : JWT 유효성 검증
     # path('jwt/token/refresh/', refresh_jwt_token),  # POST : JWT 토큰 갱신 
 
-    url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    #url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    #url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    #url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
 
 # 디버그 상태일때만 swagger 접근 
