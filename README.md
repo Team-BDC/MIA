@@ -115,7 +115,7 @@
   (venv) $ docker-compose stop 
   ```
   
-  ### 1-4. DB : setting
+  ### 1-5. DB : setting
 
  - init.sql : 스키마 생성 ->
    MySQL 8.0 Command Line Client 
@@ -130,7 +130,91 @@
   
   
 ## windows project setup 
+### 2-1. 환경 세팅
 
+- git clone 
+
+  ```
+  $ git clone https://github.com/Team-BDC/MIA
+  $ cd MIA
+  ```
+  
+- 가상환경 생성 및 활성화 
+
+  ```
+  $ python -m venv venv
+  $ source venv/bin/activate
+  (venv) $
+  ```
+- 필요 패키지 설치
+
+  ```
+  (venv) $ cd projectMIA
+  (venv) $ pip install -r requirements.txt
+  ```
+ 
+### 2-2. Backend : Django 세팅
+- Django Setup
+
+  ```
+  (venv) $ python manage.py makemigrations
+  (venv) $ python manage.py migrate
+  (venv) $ python manage.py collectstatic
+  ```
+  
+ - Django Admin
+
+  ```
+  (venv) $ python manage.py createsuperuser
+  ```
+  
+ - Runserver
+
+  ```
+  (venv) $ python manage.py runserver
+  ```
+  
+### 2-3. Frontend : React 세팅
+- yarn 설치 및 구동
+
+  ```
+  (venv) $ npm install -g yarn
+  (venv) $ yarn install
+  (venv) $ yarn start
+  ```
+  
+### 2-4. Docker
+- docker compose build&up
+
+  ```
+  (venv) $ cd MIA
+  (venv) $ docker-compose up --build
+  ```
+ - docker compose 실행
+
+  ```
+  (venv) $ docker-compose up 
+  ```
+  
+ - docker compose 중지
+
+  ```
+  (venv) $ docker-compose stop 
+  ```
+  
+  ### 2-5. DB : setting
+
+ - init.sql : 스키마 생성 ->
+   MySQL 8.0 Command Line Client 
+  ```
+  mysql> create schema 'miadb'
+  ```
+   MySQL Workbench에서 해당 파일 불러와서 실행(Execute)
+
+
+ - settings.py(MIA/projectMIA/setting.py) : 
+   user, password 수정
+   
 ## backend endpoints
 > - 회원(User) 리소스 관련 API
 > 
