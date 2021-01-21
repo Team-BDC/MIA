@@ -9,7 +9,7 @@
 ## 0. Requirements
 > - BACKEND (Django APP Server)
 > - FRONTEND (React Webapp Client)
-> - DB
+> - DB (MySQL)
 > - AI
 
 ## 1. Project Setup (Mac)
@@ -84,4 +84,14 @@
   ```
   (venv) $ docker-compose stop 
   ```
+  
+  ### 1-4. DB : setting
+
+ - init.sql : 스키마 생성
+   MySQL Workbench에서 해당 파일 불러와서 실행(Execute)
+
+ - settings.py 
+   name과 password 수정
+  
+  
 ## 2. Project Setup (Windows)
