@@ -5,6 +5,7 @@ import Gallery from "./galleryPage/gallery.js";
 import Main from "./main";
 import Result from "./resultPage/resultPage";
 import Mypage from "./mypage";
+import Upload from "./UploadPage/Upload"
 // import Find from "./find";
 import Auth from "./Auth";
 import NotFound from "./NotFound";
@@ -18,6 +19,7 @@ const RoutePage = () => {
         <Route exact path={["/home", "/"]} component={Main} />
         {/* <Route exact path={"/find"} component={Find} /> */}
         <Route exact path={"/camera"} component={Camera} />
+        <Route exact path={"/upload"} component={Upload} />
         <Route exact path={"/result"} component={Result} />
         <Route exact path={`/${userId}/gallery`} component={Gallery} />
         <Route exact path={`/${userId}/mypage`} component={Mypage} />
