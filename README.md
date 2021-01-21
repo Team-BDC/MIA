@@ -90,7 +90,7 @@
  - init.sql : 스키마 생성
    MySQL Workbench에서 해당 파일 불러와서 실행(Execute)
 
- - settings.py 
+ - settings.py : 
    name과 password 수정
   
   
