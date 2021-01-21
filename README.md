@@ -1,6 +1,16 @@
 # :seedling:MIA
 > 웹툰 자동화를 위한 사진-애니메이션 자동 변환 웹 서비스, MIA의 repository입니다. 
 
+## Content 
+> - [0. Requirements](#0.-Requirements) 
+> - [1. (Mac) Project Setup](#1.-Project-Setup-(Mac))
+> - [2. (Windows) Project Setup](#2.-Project-Setup-(Windows))
+
+## 0. Requirements
+> - BACKEND (Django APP Server)
+> - FRONTEND (React Webapp Client)
+> - DB
+
 ## 1. Project Setup (Mac)
 ### 1-1. 환경 세팅
 
@@ -73,3 +83,4 @@
   ```
   (venv) $ docker-compose stop 
   ```
+## 2. Project Setup (Windows)
