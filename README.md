@@ -4,13 +4,13 @@
 > MIA와 함께 애니메이션 캐릭터가 된 자신을 만나보세요!
 
 ## Content 
-> - [0. Requirements](#0.-requirements) 
-> - [1. (Mac) Project Setup](#1.-project-setup-(mac))
-> - [2. (Windows) Project Setup](#2.-project-setup-(windows))
-> - [3. EndPoints](#3.-backend-endpoints)
-> - [4. References](#4.-references)
+> - [0. Requirements](#requirements) 
+> - [1. (Mac) Project Setup](#mac-project-setup)
+> - [2. (Windows) Project Setup](#windows-project-setup)
+> - [3. EndPoints](#backend-endpoints)
+> - [4. References](#references)
 
-## 0. requirements
+## requirements
 
 > - BACKEND (Django APP Server)
 >   - Python 3.7
@@ -42,7 +42,7 @@
 >   - MySQL 8.0.22
 >   - Docker 20.10.2
 
-## 1. project setup (mac)
+## mac project setup
 ### 1-1. 환경 세팅
 
 - git clone 
@@ -129,9 +129,9 @@
    user, password 수정
   
   
-## 2. project setup (windows)
+## windows project setup 
 
-## 3. backend endpoints (계속 업데이트)
+## backend endpoints
 > - 회원(User) 리소스 관련 API
 > 
 >   |  HTTP |  Path |  Method |  Permission |  목적 |
@@ -155,4 +155,4 @@
 >   |**GET,POST** |/api/v1/mia/gallery_test| OPTIONS | (테스트용)갤러리 호출|
 >   |**GET,POST** |/api/v1/mia/model| OPTIONS | None |사진 변환 모델 호출|
 
-## 4. references
+## references
