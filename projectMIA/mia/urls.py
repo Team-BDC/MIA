@@ -8,14 +8,24 @@ from .views import *
 # 회원 갤러리 가져오기 
 Image_list= ImageViewSet.as_view({"get":"list"})
 
+#test
+image_list= ImagerViewSet.as_view({"get":"list"})
+gallery_list = GalleryViewSet.as_view({"get":"list", "post":"create"})
+gallery_detail = GalleryViewSet.as_view({"get":"retrieve", "patch":"partial_update", "delete":"destroy"}),
+
 urlpatterns = [ 
     # gallery
     # path("image_list/<int:gallery_id>", image_list,name="image_list"),
     path("gallery/<int:user_id>", Image_list , name="gallery"),
 
+    # test redux 
+    path("gallery_test", gallery_list, name="gallery-list"),
+    # path("gallery_test/<int:gallery_id>", gallery_detail, name="gallery-detail"),
+    path("image_list/<int:gallery_id>", image_list,name="image_list"),
+
 
     # Selfie2anime 
-    path('model/',call_model.as_view())
+    # path('model/',call_model.as_view())
 
 ] 
 

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 const LOGON = [
-  { title: "Gallery", to: "/3/gallery" },
+  { title: "Gallery", to: "/gallery" },
   { title: "Camera", to: "/camera" },
   { title: "결과물", to: "/result" },
 ];
