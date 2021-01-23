@@ -4,13 +4,31 @@
 
 from rest_framework import serializers
 from .models import *
+from django.contrib.auth.models import User
 
-class GallerySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Gallery
-        fields = '__all__'
+# class GallerySerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Gallery
+#         fields = '__all__'
 
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
         fields = '__all__'
+
+
+# 갤러리 시리얼라이저
+class GallerySerializer(serializers.Serializer):
+    class Meta:
+        model = Gallery
+        fields = '__all__'
+
+# 유저 시리얼라이저
+class UserSerializer(serializers.Serializer):
+    class Meta:
+        model = User
+        fields = ("id", "username", "password")
+
+
+
+        
