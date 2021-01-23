@@ -1,5 +1,3 @@
-import { useHistory, NavLink } from "react-router-dom";
-
 function Footer() {
   return (
     <>
