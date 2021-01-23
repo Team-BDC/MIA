@@ -18,6 +18,7 @@ from django.http import Http404
 from drf_yasg.inspectors.base import openapi
 from drf_yasg.utils import swagger_auto_schema, no_body
 from .serializers import *
+from django.contrib.auth.models import User
 from .models import *
 from django.views import View 
 
@@ -63,7 +64,10 @@ class ImagerViewSet(viewsets.ModelViewSet):
     serializer_class = ImageSerializer
 
     def get_queryset(self):
-        return Image.objects.all()
+        gallery = self.kwargs['gallery_id']
+        queryset = Image.objects.filter(gallery=gallery)
+        return queryset
+
 
     def perform_create(self, serializer):
         serializer.save()
@@ -80,27 +84,24 @@ class GalleryViewSet(viewsets.ModelViewSet):
         serializer.save()
 
 
-# class GalleryViewSet(viewsets.ModelViewSet):
-#     serializer_class = GallerySerializer
-
-#     def get_queryset(self):
-#         return Gallery.objects.all().order_by("-created_at")
-
-#     def perform_create(self, serializer):
-#         serializer.save()
-
-
 class ImageViewSet(viewsets.ModelViewSet):
-    
-    permission_classes = [permissions.IsAuthenticated]
-    serializer_class = GallerySerializer
+    authentication_classes = ()
+    permission_classes = ()
+    # serializer_class = GallerySerializer
+    serializer_class = ImageSerializer
 
     def get_queryset(self):
-        galleries = Gallery.objects.all()
-        gallery = galleries.filter(user_id=request.user.user_id)
-        images = Image.objects.all()
-        image_list = images.filter(gallery_id=gallery.gallery_id)
-        return image_list
+        user = self.kwargs['user_name']
+        userset = User.objects.get(username=user)
+        user_id = userset.id
+        # 여기까지 harry 유저 객체 id 가져옴
+        gallery = Gallery.objects.get(user=user_id)
+        gallery_id = gallery.gallery_id
+        # 여기까지 user객체의 id를 fk를 갖는 gallery 가져옴
+        images = Image.objects.filter(gallery=gallery_id)
+        # 여기까지 gallery_id를 fk로 갖는 이미지 쿼리셋 가져옴
+        return images
+
 
 
 

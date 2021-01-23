@@ -14,7 +14,7 @@ DROP TABLE Image;
 
 
 CREATE TABLE IF NOT EXISTS Gallery (
-	gallery_id varchar(36) NOT NULL,
+	gallery_id INT NOT NULL,
     user INT NOT NULL,
     created_at DATETIME(6) NOT NULL, 
     FOREIGN KEY(user) REFERENCES auth_user(id),
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS Gallery (
 
 CREATE TABLE IF NOT EXISTS Image (
 	image_number INT NOT NULL auto_increment,
-    gallery_id varchar(36) NOT NULL,
+    gallery_id INT NOT NULL,
     image_name varchar(50),
     image_path varchar(500),
     FOREIGN KEY(gallery_id) REFERENCES Gallery(gallery_id) ON DELETE CASCADE,

@@ -14,14 +14,10 @@ gallery_list = GalleryViewSet.as_view({"get":"list", "post":"create"})
 gallery_detail = GalleryViewSet.as_view({"get":"retrieve", "patch":"partial_update", "delete":"destroy"}),
 
 urlpatterns = [ 
-    # gallery
-    # path("image_list/<int:gallery_id>", image_list,name="image_list"),
-    path("gallery/<int:user_id>", Image_list , name="gallery"),
-
-    # test redux 
     path("gallery_test", gallery_list, name="gallery-list"),
     # path("gallery_test/<int:gallery_id>", gallery_detail, name="gallery-detail"),
-    path("image_list/<int:gallery_id>", image_list,name="image_list"),
+    path("image_list/<int:gallery_id>", image_list, name="image_list"),
+    path("image_list/<str:user_name>", Image_list, name="ImageList"),
 
 
     # Selfie2anime 
