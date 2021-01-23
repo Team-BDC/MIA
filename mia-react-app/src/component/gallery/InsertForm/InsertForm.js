@@ -81,12 +81,11 @@ function InsertForm({ logged }) {
     setState(e.target.value);
   };
 
-  // "http://localhost:8000/api/v1/mia/image_list/1"
-  // api에서 모든 gallery 객체 가져온 후,
-  // api에서 username과 일치하는 값을 fk로 가지는 gallery를 filter로 분류 후 리턴
+  const current_name = parsedUserInfo.username;
 
+  // api/v1/mia/image_list/에 url parameter로 현재 로그인한 사용자 username 넘겨준다
   axios
-    .get("http://localhost:8000/api/v1/mia/image_list/harry", {
+    .get("http://localhost:8000/api/v1/mia/image_list/" + current_name, {
       username: parsedUserInfo.username,
       password: "1234",
     })
