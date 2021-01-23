@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import viewsets, status, mixins
+from rest_framework import viewsets, status, mixins, permissions
 import tensorflow as tf # tensorflow 1.13.1+
 import cv2
 import dlib
@@ -66,6 +66,21 @@ class GalleryViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save()
+
+
+class ImageViewSet(viewsets.ModelViewSet):
+    
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = GallerySerializer
+
+    def get_queryset(self):
+        galleries = Gallery.objects.all()
+        gallery = galleries.filter(user_id=request.user.user_id)
+        images = Image.objects.all()
+        image_list = images.filter(gallery_id=gallery.gallery_id)
+        return gallery
+
+
 
 
 

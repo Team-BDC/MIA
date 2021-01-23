@@ -15,9 +15,9 @@ DROP TABLE Image;
 
 CREATE TABLE IF NOT EXISTS Gallery (
 	gallery_id varchar(36) NOT NULL,
-    user_id INT NOT NULL,
+    user INT NOT NULL,
     created_at DATETIME(6) NOT NULL, 
-    FOREIGN KEY(user_id) REFERENCES auth_user(id),
+    FOREIGN KEY(user) REFERENCES auth_user(id),
     PRIMARY KEY(gallery_id)
 );
 
