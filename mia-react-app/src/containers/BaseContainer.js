@@ -20,11 +20,10 @@ export class BaseContainer extends Component {
     }
   }
   checkUser = () => {
-    const { checkUser, setUserTemp, history } = authActions;
-
+    //const { checkUser, setUserTemp, history } = authActions;
     // localStorage에 체크 후 userInfo값이 있을때 로그인 되어있는것으로인식 -> setUserTemp
     // 새로고침 할 때, state가 초기화로 logged값이 false로 바뀌는데, 그때도 로그인을 유지하기 위함
-    if (localStorage.getItem("userInfo")) {
+    /*if (localStorage.getItem("userInfo")) {
       const userInfo = JSON.parse(localStorage.getItem("userInfo"));
       console.log(userInfo);
       setUserTemp({
@@ -33,20 +32,20 @@ export class BaseContainer extends Component {
         token: userInfo.token,
       });
       return;
-    }
-
+    } else checkUser();*/
     // userInfo값이 localStorage에 없으면 api통신
-    checkUser();
   };
 
   render() {
-    return <div />;
+    return <>{this.props.children}</>;
   }
 }
 
-const mapStateToProps = (state) => ({
-  logged: state.auth.logged,
-});
+const mapStateToProps = (state) => {
+  return {
+    logged: state.auth.logged,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
