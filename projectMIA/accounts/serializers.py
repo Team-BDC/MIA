@@ -4,6 +4,7 @@ from rest_framework_jwt.settings import api_settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from mia.models import AuthUser
 # from django.contrib.auth.models import User
 
 # User = get_user_model()
@@ -44,7 +45,7 @@ class UserSerializer(serializers.ModelSerializer):
 # 회원가입 시리얼라이저
 class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = AuthUser
         fields = ("id", "username", "password")
         extra_kwargs = {"password": {"write_only": True}}
 
@@ -57,7 +58,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 # 접속 유지 확인 시리얼라이저 
 class CurrentUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = AuthUser
         fields = ('id', 'username')
 
 

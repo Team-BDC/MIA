@@ -10,5 +10,5 @@ class ImageAdmin(admin.ModelAdmin):
 
 @admin.register(Gallery)
 class GalleryAdmin(admin.ModelAdmin):
-    list_display = ['gallery_id', 'user', 'created_at']
+    list_display = ['gallery_id', 'user']
     search_filds = ['gallery_id']

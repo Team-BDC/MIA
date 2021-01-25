@@ -11,11 +11,11 @@ from rest_framework.response import Response
 from rest_framework import permissions, status, mixins, viewsets, generics
 
 from .serializers import *
-from .models import *
+from mia.models import *
 
 from knox.models import AuthToken
 
-User = get_user_model()
+# User = get_user_model()
 
 
 # Custom ViewSet - create, list, retrive, update, destroy from GenericViewSet
@@ -25,7 +25,7 @@ class UserViewSet(mixins.CreateModelMixin,
                   mixins.UpdateModelMixin,
                   mixins.DestroyModelMixin,
                   viewsets.GenericViewSet):
-    queryset = User.objects.filter(is_active=True)
+    queryset = AuthUser.objects.filter(is_active=True)
     serializer_class = UserSerializer
 
 
@@ -39,6 +39,9 @@ class RegistrationAPI(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
+        # 갤러리 자동 생성
+        Gallery.objects.create(user=AuthUser.objects.get(id=user.id))
+
         return Response(
             {
                 "user": CurrentUserSerializer(
