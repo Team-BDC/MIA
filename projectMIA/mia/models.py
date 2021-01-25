@@ -7,11 +7,17 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
+def gallery_number():
+    num = Gallery.objects.count()
+    if num == None:
+        return 1
+    else:
+        return num + 1
+
 
 class Gallery(models.Model):
-    gallery_id = models.IntegerField(primary_key=True)
+    gallery_id = models.IntegerField(primary_key=True, default=gallery_number)
     user = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='user')
-    created_at = models.DateTimeField()
 
     class Meta:
         managed = False
@@ -73,9 +79,6 @@ class AuthUser(models.Model):
     class Meta:
         managed = False
         db_table = 'auth_user'
-
-    # def __str__(self):
-    #     return self.username
 
 
 class AuthUserGroups(models.Model):
