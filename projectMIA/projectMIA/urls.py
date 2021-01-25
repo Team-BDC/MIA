@@ -35,7 +35,6 @@ urlpatterns = [
     path('api/v1/user/', include('accounts.urls')),
     path('api/v1/user/auth', include('knox.urls')),
     path('api/v1/mia/', include('mia.urls')),
-    #path('model/', views.call_model.as_view()),
 
     # react 연결
     path("", views.ReactAppView.as_view()),
