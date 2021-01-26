@@ -14,6 +14,16 @@ def gallery_number():
     else:
         return num + 1
 
+class Afterimage(models.Model):
+    image_number = models.AutoField(primary_key=True)
+    gallery = models.ForeignKey('Gallery', models.DO_NOTHING)
+    image_name = models.CharField(max_length=50, blank=True, null=True)
+    image_path = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'AfterImage'
+
 
 class Gallery(models.Model):
     gallery_id = models.IntegerField(primary_key=True, default=gallery_number)
@@ -22,17 +32,6 @@ class Gallery(models.Model):
     class Meta:
         managed = False
         db_table = 'Gallery'
-
-
-class Image(models.Model):
-    image_number = models.AutoField(primary_key=True)
-    gallery = models.ForeignKey(Gallery, models.DO_NOTHING)
-    image_name = models.CharField(max_length=50, blank=True, null=True)
-    image_path = models.CharField(max_length=500, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'Image'
 
 
 class AuthGroup(models.Model):

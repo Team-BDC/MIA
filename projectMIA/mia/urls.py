@@ -11,15 +11,15 @@ Image_list= ImageViewSet.as_view({"get":"list"})
 #test
 # image_list= ImagerViewSet.as_view({"get":"list"})
 gallery_list = GalleryViewSet.as_view({"get":"list", "post":"create"})
-gallery_detail = GalleryViewSet.as_view({"get":"retrieve", "patch":"partial_update", "delete":"destroy"}),
+
 
 urlpatterns = [ 
     path("gallery_test", gallery_list, name="gallery-list"),
-    # path("gallery_test/<int:gallery_id>", gallery_detail, name="gallery-detail"),
-    # path("image_list/<int:gallery_id>", image_list, name="image_list"),
+
+    # 유저 갤러리 가져오기
     path("image_list/<str:user_name>", Image_list, name="ImageList"),
-
-
+    # 갤러리에 이미지 추가
+    path("add_image/<str:user_name>", Image.as_view(), name="ImageAdd"),
     # Selfie2anime 
     path('model/',call_model.as_view())
 

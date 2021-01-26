@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import * as authActions from "../../../store/modules/auth";
-// import styles from "./InsertForm.css";
-// import classNames from "classnames/bind";
 
 function InsertForm({ logged }) {
   console.log("gallery", logged);

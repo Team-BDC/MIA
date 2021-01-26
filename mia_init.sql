@@ -10,7 +10,7 @@ USE miadb;
 -- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DROP TABLE Gallery;
-DROP TABLE Image;
+DROP TABLE AfterImage;
 
 
 CREATE TABLE IF NOT EXISTS Gallery (
@@ -20,11 +20,11 @@ CREATE TABLE IF NOT EXISTS Gallery (
     PRIMARY KEY(gallery_id)
 );
 
-CREATE TABLE IF NOT EXISTS Image (
+CREATE TABLE IF NOT EXISTS AfterImage (
 	image_number INT NOT NULL auto_increment,
     gallery_id INT NOT NULL,
     image_name varchar(50),
-    image_path varchar(500),
+    image_path longtext,
     FOREIGN KEY(gallery_id) REFERENCES Gallery(gallery_id) ON DELETE CASCADE,
     PRIMARY KEY(image_number)
 );

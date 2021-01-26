@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Image
+        model = Afterimage
         fields = '__all__'
 
 
