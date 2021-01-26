@@ -1,0 +1,19 @@
+.pagination {
+    margin: 15px auto;
+    display: flex;
+    list-style: none;
+    outline: none;
+    justify-content: center;
+  }
+  .pagination > .active > a{
+    background-color: #212936;
+    border-color: #212936;
+    color: #fff;
+  }
+  .pagination > li > a{
+    border: 1px solid #212936 ;
+    padding: 5px 10px;
+    outline: none;
+    cursor: pointer;
+  }
+ 
