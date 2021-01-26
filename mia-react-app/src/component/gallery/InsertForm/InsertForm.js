@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
+
+// import Pagination from "rc-pagination";
+// import "rc-pagination/assets/index.css";
 
 // Style
 const GlobalStyle = createGlobalStyle`
@@ -40,6 +43,18 @@ function InsertForm({ logged }) {
 
   const current_name = parsedUserInfo.username;
 
+  // 페이지네이션
+  // const [pageSize, setPageSize] = useState(6);
+  // const [totalCount, setTotalCount] = useState(60);
+  // const [currentPage, setCurrentPage] = useState(1);
+
+  // function onChange(page) {
+  //   console.log(page);
+  //   setState({
+  //     current: page,
+  //   });
+  // }
+
   // api/v1/mia/image_list/에 url parameter로 현재 로그인한 사용자 username 넘겨준다
   axios
     .get("http://localhost:8000/api/v1/mia/image_list/" + current_name, {
@@ -65,7 +80,7 @@ function InsertForm({ logged }) {
       <WrapperImages>
         {logged ? (
           <>
-            {imageurls.map((img, idx) => {
+            {imageurls.map((img) => {
               return (
                 <img
                   src={`data:image/jpg;base64,` + img.image_path}
@@ -80,6 +95,14 @@ function InsertForm({ logged }) {
           </>
         )}
       </WrapperImages>
+      {/* <center>
+        <Pagination
+          total={totalCount}
+          current={currentPage}
+          pageSize={pageSize}
+          onChange={onChange}
+        />
+      </center> */}
     </div>
   );
 }
