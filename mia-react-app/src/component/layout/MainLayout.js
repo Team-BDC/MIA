@@ -1,21 +1,21 @@
-import { useEffect } from "react";
-import Header from "./header";
+// import { useEffect } from "react";
+// import Header from "./header";
 import Footer from "./footer";
 import Navigation from "./navigation";
 import HeaderContainer from "../../containers/HeaderContainer";
 
 const MainLayout = ({ children }) => {
   return (
-    <div>
+    <div className="h-screen">
       {/* <Header /> */}
-      <HeaderContainer />
-      <main className="flex w-full h-screen">
-        <Navigation />
-        <section className="w-full p-4">
-          <div className="w-full h-64 p-4 text-md"> {children}</div>
+      <HeaderContainer/>
+      <main className="flex md:inline-flex w-screen h-4/5">
+      {/*  <Navigation />*/}
+        <section className="w-screen">
+          <div className="w-screen text-md"> {children}</div>
         </section>
       </main>
-      <Footer />
+      <Footer/>
     </div>
   );
 };
