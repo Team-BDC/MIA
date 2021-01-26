@@ -39,7 +39,10 @@ function InsertForm({ logged }) {
           {imageurls.map((img, idx) => {
             return (
               <div>
-                <img src={img.image_path} alt={img.image_name} />
+                <img
+                  src={`data:image/jpg;base64,` + img.image_path}
+                  alt={img.image_name}
+                />
               </div>
             );
           })}
