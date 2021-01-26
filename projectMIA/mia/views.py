@@ -23,6 +23,7 @@ from .models import *
 from django.views import View 
 import urllib
 import json
+import base64
 
 
 # 리액트 연동 테스트용 뷰. viewset을 이용, get, post, put, delete 가능
@@ -175,8 +176,7 @@ class call_model(APIView):
             checkpoint_path=Selfie2AnimeConfig.checkpoint_path
             saver=Selfie2AnimeConfig.saver
 
-            response = HttpResponse(content_type="image/jpeg")
-            
+            #response = HttpResponse(content_type="image/jpeg")
             detector = dlib.get_frontal_face_detector()
             sp = dlib.shape_predictor(folder_path+'/selfie2anime/checkpoint/shape_predictor_5_face_landmarks.dat')
 
@@ -230,7 +230,10 @@ class call_model(APIView):
                 result = np.hstack([cv2.resize(img, (256, 256)), img_output])
              #   cv2.imwrite(folder_path+'/selfie2anime/result/%s' % os.path.basename(img_path), result[:, :, ::-1])
                 cv2.imwrite(folder_path+'/selfie2anime/result/'+ img_name, result[:, :, ::-1])
-                img = Pimg.open(folder_path+"/selfie2anime/result/"+img_name)
-                img.save(response,'jpeg')
-
+                #img = Pimg.open(folder_path+"/selfie2anime/result/"+img_name)
+                #img.save(response,'jpeg') img는  Http Response할 때 사용하면 됨. response=HttpResponse(content_type="image/jpeg") 주석도 풀어줘야 함!
+                with open(folder_path+"/selfie2anime/result/"+img_name,"rb") as img_file:
+                    img_base64=base64.b64encode(img_file.read())
+                response=Response(img_base64)
+                # 결과 이미지 httpResponse로 넘겨주지 말고 base64로 변환해서 전달. 이래야 창 띄우기 말고 다운로드가 가능
             return response

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 let profile_url = null; //-> axios로 json 형태로 보내기 !~ -> views.py로 ~ -> 사진 url
@@ -11,6 +12,7 @@ class Upload extends Component {
       selectedFile: null,
       previewURL: "",
       img_name: "",
+      uploadSuccess: false,
     };
   }
 
@@ -33,8 +35,7 @@ class Upload extends Component {
         },
       })
       .then((res) => {
-        console.log(data);
-        alert("success");
+        this.setState({ ...this.state, uploadSuccess: true, result: res.data });
       })
       .catch((err) => {
         console.log(err);
@@ -62,8 +63,11 @@ class Upload extends Component {
         file: file,
         previewURL: reader.result,
         img_name: file.name,
+        uploadSuccess: false,
+        result: "",
       });
     };
+    console.log(this.state);
     reader.readAsDataURL(file);
   };
   render() {
@@ -74,7 +78,7 @@ class Upload extends Component {
       );
       profile_url = this.state.previewURL;
       img_name = this.state.img_name;
-      console.log(profile_url);
+      //console.log(profile_url);
     }
     return (
       // <div>
@@ -106,6 +110,13 @@ class Upload extends Component {
         >
           Upload
         </button>
+        {this.state.uploadSuccess && (
+          <Redirect
+            to={{ pathname: "/result", state: { img: this.state.result } }}
+          ></Redirect>
+          //결과 페이지에 props로 넘겨주고 싶은거 있으면
+          //state : {...} 안에 key:props 형태로 넘겨주면 result페이지에서 props.location.state."지정한 키"형태로 호출할 수 있습니다!
+        )}
       </div>
     );
   }
