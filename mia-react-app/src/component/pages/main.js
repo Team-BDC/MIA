@@ -1,28 +1,33 @@
+import "./main.css";
+import img1 from './anime.png';
+
+
 const CameraButton = ({ history }) => (
   <button
-    className="w-full bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"
+    className="rounded-full font h-16 bg-gray-900 text-white p-2 mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300 btn-temp text-3xl"
     onClick={ () => {history.push("/camera")}}
-  >Upload From Camera
+  >Camera
   </button>
 );
 
 const FileButton = ({ history }) => (
   <button
-    className="w-full bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"
+    className="rounded-full font h-16 bg-gray-900 text-white p-2 mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300 btn-temp text-3xl"
     onClick={() =>{history.push("/upload")}}
-  >Upload From File
-    
+  >File
   </button>
 );
 
 function Main({history}) {
   return (
     <>
-      <div>
+      <div className="main">
+        <div className="animeImage" >
+          <img src ={img1} alt="main image"></img>
+        </div>
         <CameraButton history = {history}></CameraButton>
         <FileButton history = {history}> </FileButton>
       </div>
-    
     </>
   );
 }
