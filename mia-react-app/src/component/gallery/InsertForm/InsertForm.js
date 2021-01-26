@@ -1,5 +1,28 @@
 import React, { useState } from "react";
 import axios from "axios";
+import styled from "styled-components";
+import { createGlobalStyle } from "styled-components";
+
+// Style
+const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: sans-serif;
+  }
+`;
+
+const WrapperImages = styled.section`
+  max-width: 70rem;
+  margin: 4rem auto;
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+`;
 
 function InsertForm({ logged }) {
   console.log("gallery", logged);
@@ -32,26 +55,31 @@ function InsertForm({ logged }) {
 
   return (
     // logged 말고, axios로 받아온 배열에 데이터 있는지 확인해서 삼항연산자
+    // 배열을 복사해서 새 배열 만들고, 각 배열에 데이터 6개씩 넣기
+    // 페이지네이터 - 다음 페이지로 넘어가면 다음 배열에 잇는 데이터 출력되는 방식으로
     <div>
-      <p>{parsedUserInfo.username}의 갤러리 입니다.</p>
-      {logged ? (
-        <>
-          {imageurls.map((img, idx) => {
-            return (
-              <div>
+      <center>
+        <p>{parsedUserInfo.username}의 갤러리 입니다.</p>
+      </center>
+      <GlobalStyle />
+      <WrapperImages>
+        {logged ? (
+          <>
+            {imageurls.map((img, idx) => {
+              return (
                 <img
                   src={`data:image/jpg;base64,` + img.image_path}
                   alt={img.image_name}
                 />
-              </div>
-            );
-          })}
-        </>
-      ) : (
-        <>
-          <p>이미지없음</p>
-        </>
-      )}
+              );
+            })}
+          </>
+        ) : (
+          <>
+            <p>이미지없음</p>
+          </>
+        )}
+      </WrapperImages>
     </div>
   );
 }
