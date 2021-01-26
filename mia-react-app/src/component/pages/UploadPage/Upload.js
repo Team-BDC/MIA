@@ -35,25 +35,15 @@ class Upload extends Component {
         },
       })
       .then((res) => {
+        console.log(res);
         this.setState({ ...this.state, uploadSuccess: true, result: res.data });
       })
       .catch((err) => {
         console.log(err);
         alert("fail");
       });
-
-    // const formData = new FormData();
-    // formData.append("file", this.state.selectedFile);
-
-    // return axios
-    //   .post("http://localhost:3000/${userId}/gallery", formData)
-    //   .then((res) => {
-    //     alert("성공");
-    //   })
-    //   .catch((err) => {
-    //     alert("실패");
-    //   });
   }
+
   handleFileOnChange = (event) => {
     event.preventDefault();
     let reader = new FileReader();
@@ -70,6 +60,7 @@ class Upload extends Component {
     console.log(this.state);
     reader.readAsDataURL(file);
   };
+
   render() {
     let profile_preview = null;
     if (this.state.file !== "") {
@@ -81,17 +72,6 @@ class Upload extends Component {
       //console.log(profile_url);
     }
     return (
-      // <div>
-      //   <input
-      //     type="file"
-      //     id="photoInput"
-      //     accept="image/jpg, image/png,image/jpeg,image/gif"
-      //     name="profile_img"
-      //     onChange={(e) => this.handleFileOnChange(e)}
-      //   />
-      //   {profile_preview}
-      //   <button type="button" onClick={this.handlePost()} />
-      // </div>
       <div>
         <input
           type="file"
@@ -112,7 +92,10 @@ class Upload extends Component {
         </button>
         {this.state.uploadSuccess && (
           <Redirect
-            to={{ pathname: "/result", state: { img: this.state.result } }}
+            to={{
+              pathname: "/result",
+              state: { img: this.state.result, name: this.state.img_name },
+            }}
           ></Redirect>
           //결과 페이지에 props로 넘겨주고 싶은거 있으면
           //state : {...} 안에 key:props 형태로 넘겨주면 result페이지에서 props.location.state."지정한 키"형태로 호출할 수 있습니다!
