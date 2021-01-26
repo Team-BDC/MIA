@@ -1,0 +1,30 @@
+/* main.js */
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+.font{
+ /*   font-family: 'Yusei Magic', sans-serif;*/
+    font-family: 'Work Sans', sans-serif;
+}
+
+.main{
+    text-align: center;
+}
+
+.animeImage {
+    text-align: center;
+}
+
+.animeImage img{
+    display: inline-block;
+    width: auto; height: auto;
+    max-width: 500px;
+    max-height: 600px;
+    padding-top: 70px;
+}
+
+.btn-temp{
+    width: 9em;
+    margin: 1em;
+    margin-bottom: 0;
+}

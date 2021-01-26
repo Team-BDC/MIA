@@ -1,0 +1,31 @@
+/* header.js */
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap');
+
+.font{
+ /*   font-family: 'Yusei Magic', sans-serif;*/
+    font-family: 'Work Sans', sans-serif;
+}
+
+.mia_font{
+    font-family: 'Ropa Sans', sans-serif;
+}
+
+
+.m{
+    padding: 0;
+    margin-left : 3em;
+}
+
+header {
+    text-align: right;
+}
+
+.memu{
+    display: inline;
+}
+
+.menu CustomNavLink {
+    display: inline;
+}
