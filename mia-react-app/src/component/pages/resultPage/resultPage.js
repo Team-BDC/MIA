@@ -1,31 +1,32 @@
 import BackButton from "../../shared/BackButton";
 import SmallButton from "../../shared/SmallButton";
 import classNames from "classnames/bind";
-
 import React from "react";
 import Item from "./result";
 import style from "./result.css";
 
 const cx = classNames.bind(style);
 
-function Result() {
+function Result(props) {
   return (
     <>
       <p className={cx("Title")}>결과페이지</p>
       <div className={cx("App")}>
-        <Item>Before</Item>
-        <Item>After</Item>
+        <Item>
+          <img
+            src={`data:image/jpg;base64,${props.location.state.img}`}
+            alt="none"
+          />
+        </Item>
       </div>
       <div className={cx("Button")}>
-        <SmallButton
-          onClick={(e) => {
-            e.preventDefault();
-            window.alert("저장");
-          }}
-          buttonName="저장"
+        <a
+          href={`data:image/jpg;base64,${props.location.state.img}`}
+          download="test.jpg"
         >
-          저장하기
-        </SmallButton>
+          <SmallButton buttonName="저장"> 저장하기</SmallButton>
+        </a>
+
         <SmallButton
           onClick={(e) => {
             e.preventDefault();
