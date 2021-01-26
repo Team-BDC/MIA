@@ -106,6 +106,34 @@ class ImageViewSet(viewsets.ModelViewSet):
         return images
 
 
+class Image(APIView):
+    authentication_classes = ()
+    permission_classes = ()
+    serializer_class = ImageSerializer
+
+    def post(self, request, *args, **kwargs): 
+        if request.method == 'POST':
+            folder_path=Selfie2AnimeConfig.folder_path
+            data = json.loads(request.body)
+            img_name = data['img_name']
+            img_url = data['profile_url']
+            # print(data)
+
+            user = self.kwargs['user_name']
+            userset = User.objects.get(username=user)
+            user_id = userset.id
+            gallery_id=Gallery.objects.get(user=user_id)
+            # print(gallery_id)
+
+            images = Afterimage.objects.create(gallery=Gallery.objects.get(user=user_id), image_name=img_name, image_path=img_url)
+            with open(folder_path+"/selfie2anime/result/"+img_name,"rb") as img_file:
+                img_base64=base64.b64encode(img_file.read())
+            response=Response(img_base64)
+            return response
+
+
+        
+
 
         
 class call_model(APIView):
