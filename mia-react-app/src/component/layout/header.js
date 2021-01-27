@@ -5,6 +5,7 @@ const LOGON = [
   { title: "Gallery", to: "/gallery" },
   { title: "Camera", to: "/camera" },
   { title: "Result", to: "/result" },
+  { title: "Test", to: "/test" },
 ];
 const LOGOFF = [
   { title: "Login", to: "/auth/login" },
@@ -52,39 +53,39 @@ function Header({ noBackBtn, setUserTemp, onLogout, logged }) {
         to="/"
         activeStyle={activestyle}
       >
-      <p className="ml-12 mr-12 text-5xl">MIA</p>
+        <p className="ml-12 mr-12 text-5xl">MIA</p>
       </NavLink>
       <div className="menu w-5/6">
         {logged ? (
           <>
-          <div>
-            {LOGON.map((content, idx) => (
-             <CustomNavLink
-                key={idx}
-                title={content.title}
-                to={content.to}
-              ></CustomNavLink>
-            ))}
-            <button //로그아웃 처리 해주어야함.
-              className="font lg:inline-flex lg:w-auto px-3 py-4 mr-1 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
-              to="/home"
-              activeStyle={activestyle}
-              onClick={onLogout}
-            >
-              Logout
-            </button>
+            <div>
+              {LOGON.map((content, idx) => (
+                <CustomNavLink
+                  key={idx}
+                  title={content.title}
+                  to={content.to}
+                ></CustomNavLink>
+              ))}
+              <button //로그아웃 처리 해주어야함.
+                className="font lg:inline-flex lg:w-auto px-3 py-4 mr-1 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                to="/home"
+                activeStyle={activestyle}
+                onClick={onLogout}
+              >
+                Logout
+              </button>
             </div>
           </>
         ) : (
           <>
             {LOGOFF.map((content, idx) => (
               <CustomNavLink
-               title={content.title}
+                title={content.title}
                 to={content.to}
                 key={idx}
               ></CustomNavLink>
             ))}
-          </>      
+          </>
         )}
       </div>
     </header>
