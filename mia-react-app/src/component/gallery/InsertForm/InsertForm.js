@@ -48,7 +48,8 @@ function InsertForm({ logged }) {
       password: "1234",
     })
     .then((res) => {
-      console.log(...imageurls.slice());
+      console.log(res);
+      // console.log(...imageurls.slice());
       if (res.data.results.length !== imageurls.length) {
         setImageurls([...imageurls, ...res.data.results]);
       }

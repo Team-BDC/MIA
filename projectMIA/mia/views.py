@@ -25,58 +25,6 @@ import urllib
 import json
 import base64
 
-
-# 리액트 연동 테스트용 뷰. viewset을 이용, get, post, put, delete 가능
-class GalleryView(viewsets.GenericViewSet, mixins.ListModelMixin, View):
-    serializer_class = GallerySerializer
-    
-    @swagger_auto_schema(query_serializer=GallerySerializer)
-    def list(self, request, *args, **kwargs):
-        return super().list(request, *args, **kwargs)
-    
-    def get_queryset(self):
-        conditions = {
-            'gallery_id': self.kwargs.get("gallery_id", None),
-            'created_at': self.kwargs.get("created_at", None),
-            'user': self.kwargs.get("user", None),
-        }
-        conditions = {key: val for key, val in conditions.items() if val is not None}
-        galleries = Gallery.objects.filter(**conditions)
-        if not galleries.exists():
-            raise Http404
-
-        return galleries
-
-    def add(self, request): 
-        galleries = Gallery.objects.filter(**request.data)
-        if galleries.exists():
-            return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
-
-        gallery_serializer = GallerySerializer(data=request.data, partial=True)
-        if not gallery_serializer.is_valid():
-            return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
-
-        gallery = gallery_serializer.save()
-
-        return Response(GallerySerializer(gallery).data, status=status.HTTP_201_CREATED)
-
-
-# class ImagerViewSet(viewsets.ModelViewSet):
-#     authentication_classes = ()
-#     permission_classes = ()
-#     serializer_class = ImageSerializer
-
-#     def get_queryset(self):
-#         gallery = self.kwargs['gallery_id']
-#         queryset = Image.objects.filter(gallery=gallery)
-#         return queryset
-
-
-#     def perform_create(self, serializer):
-#         serializer.save()
-
-
-
 class GalleryViewSet(viewsets.ModelViewSet):
     serializer_class = GallerySerializer
 
@@ -103,6 +51,8 @@ class ImageViewSet(viewsets.ModelViewSet):
         # 여기까지 user객체의 id를 fk를 갖는 gallery 가져옴
         images = Afterimage.objects.filter(gallery=gallery_id)
         # 여기까지 gallery_id를 fk로 갖는 이미지 쿼리셋 가져옴
+        print(images)
+        print(images.count())
         return images
 
 
