@@ -143,7 +143,8 @@
 
   ```
   $ python -m venv venv
-  $ source venv/bin/activate
+  $ source venv/Scripts
+  $ activate
   (venv) $
   ```
 - 필요 패키지 설치
