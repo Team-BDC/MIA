@@ -2,6 +2,7 @@ import BackButton from "../../shared/BackButton";
 import SmallButton from "../../shared/SmallButton";
 import GalleryButton from "../../shared/GalleryButton";
 import SaveButton from "../../shared/SaveButton";
+import { Link } from 'react-router-dom'
 
 import classNames from "classnames/bind";
 import React from "react";
@@ -14,11 +15,24 @@ const cx = classNames.bind(style);
 let profile_url = null;
 let img_name = null;
 
+let go; //로그인 안되어있으면 갤러리에 추가 눌렀을 때 갈 장소!
+
 function Result(props) {
+
   const localStorageInfo = localStorage.getItem("userInfo");
   // 현재 로그인 한 사용자
-  const parsedUserInfo = JSON.parse(localStorageInfo);
-  const current_name = parsedUserInfo.username;
+  let current_name;
+  let parsedUserInfo;
+  
+  if(localStorageInfo){
+    parsedUserInfo = JSON.parse(localStorageInfo);
+    current_name = parsedUserInfo.username;
+    go="/gallery";
+  }else{
+    parsedUserInfo = null;
+    current_name = null;
+    go = "/auth/login";
+  }
 
   console.log("url", props.location.state.img);
   console.log("name", props.location.state.name);
@@ -74,21 +88,18 @@ function Result(props) {
           <SaveButton buttonName="저장"></SaveButton>
         </a>
 
-        <GalleryButton
-          onClick={() => {
-            handlePOST();
-          }}
-          buttonName="갤러리"
-        >
-          
-        </GalleryButton>
-        <BackButton
-          onClick={(e) => {
-            e.preventDefault();
-          }}
-          buttonName="뒤로가기"
-        >
-        </BackButton>
+        <Link to = {go}> 
+          <GalleryButton
+            onClick={() => {
+              handlePOST();
+            }}
+            buttonName="갤러리"
+          > 
+          </GalleryButton>
+        </Link>
+
+        <BackButton buttonName="뒤로가기"></BackButton>
+
       </div>
     </div>
   );

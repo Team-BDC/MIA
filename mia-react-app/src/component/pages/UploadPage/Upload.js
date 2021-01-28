@@ -73,20 +73,9 @@ class Upload extends Component {
       //console.log(profile_url);
     }
     return (
-      // <div>
-      //   <input
-      //     type="file"
-      //     id="photoInput"
-      //     accept="image/jpg, image/png,image/jpeg,image/gif"
-      //     name="profile_img"
-      //     onChange={(e) => this.handleFileOnChange(e)}
-      //   />
-      //   {profile_preview}
-      //   <button type="button" onClick={this.handlePost()} />
-      // </div>
       <div>
 
-<div className="filebox flex justify-center justify-items-center mt-10 mb-2"> 
+        <div className="filebox flex justify-center justify-items-center mt-10 mb-2"> 
           <label for="file">select</label> 
           <input 
             type="file"
