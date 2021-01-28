@@ -3,7 +3,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 65vh;
+  height: 55vh;
+  padding-top: 1em;
+  padding-bottom: 0;
 }
 
 .Button {

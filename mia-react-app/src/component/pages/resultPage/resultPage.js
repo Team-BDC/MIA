@@ -1,5 +1,8 @@
 import BackButton from "../../shared/BackButton";
 import SmallButton from "../../shared/SmallButton";
+import GalleryButton from "../../shared/GalleryButton";
+import SaveButton from "../../shared/SaveButton";
+
 import classNames from "classnames/bind";
 import React from "react";
 import Item from "./result";
@@ -53,7 +56,7 @@ function Result(props) {
 
   return (
     <div>
-      <p className={cx("Title")}>결과페이지</p>
+      {/* <p className={cx("Title")}>결과페이지</p> */}
       <div className={cx("App")}>
         <Item>
           <img
@@ -62,30 +65,29 @@ function Result(props) {
           />
         </Item>
       </div>
+
       <div className={cx("Button")}>
         <a
           href={`data:image/jpg;base64,${props.location.state.img}`}
           download="test.jpg"
         >
-          <SmallButton buttonName="저장"> 저장하기</SmallButton>
+          <SaveButton buttonName="저장"></SaveButton>
         </a>
 
-        <SmallButton
+        <GalleryButton
           onClick={() => {
             handlePOST();
           }}
           buttonName="갤러리"
         >
-          갤러리에 추가하기
-        </SmallButton>
+          
+        </GalleryButton>
         <BackButton
           onClick={(e) => {
             e.preventDefault();
-            window.alert("뒤로가기");
           }}
           buttonName="뒤로가기"
         >
-          뒤로가기
         </BackButton>
       </div>
     </div>
