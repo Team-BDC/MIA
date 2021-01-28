@@ -1,0 +1,56 @@
+/*파일선택하는거 묶어서 진행할것 ~ */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+.upload {
+    font-family: 'Work Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.upload_img {
+    display: inline-block;
+    width: auto; height: auto;
+    max-width: 300px;
+    max-height: 600px;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+  }
+  
+  .filebox label {
+    font-family: 'Work Sans', sans-serif;
+    display: inline-block;
+    padding: 10px 20px;
+    /* color: #999; */
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
+  }
+  
+  /* named upload */
+  .filebox .upload-name {
+    font-family: 'Work Sans', sans-serif;
+    display: inline-block;
+    height: 35px;
+    font-size:18px; 
+    padding: 0 10px;
+    margin: 5px;
+    vertical-align: middle;
+    background-color: #f5f5f5;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+  
+  }

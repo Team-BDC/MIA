@@ -32,16 +32,16 @@ function Camera() {
             height={300}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
-            width={400}
+            width={300}
             videoConstraints={videoConstraints}
           />
-          <br></br>
+
           {imgSrc && <img src={imgSrc} id="capture" />}
         </div>
         <div className={cx("Button")}>
-          <SmallButton onClick={capture}>화면 캡처</SmallButton>
+          <SmallButton onClick={capture}>Capture</SmallButton>
           <a href={imgSrc} download>
-            <SmallButton>다운로드</SmallButton>
+            <SmallButton>Download</SmallButton>
           </a>
         </div>
       </>
@@ -50,7 +50,7 @@ function Camera() {
 
   return (
     <>
-      <p className={cx("Title")}>카메라페이지</p>
+      {/* <p className={cx("Title mt-6 mb-0")}>Camera</p> */}
       <WebcamCapture />
     </>
   );
