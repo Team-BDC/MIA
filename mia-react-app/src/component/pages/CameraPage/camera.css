@@ -1,20 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
 .Content {
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 55vh; */
+
   display: flex;
   align-items: center;
   justify-content: center;
   height: 55vh;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .Button {
   display: flex;
+  margin-top: 0;
   align-items: center;
   justify-content: center;
+  font-family: 'Work Sans', sans-serif;
 }
 
-.Title {
-  font-family: sans-serif;
+/* .Title {
   font-size: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
+  font-family: 'Work Sans', sans-serif;
+} */

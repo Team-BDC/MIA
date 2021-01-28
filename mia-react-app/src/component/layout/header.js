@@ -4,13 +4,11 @@ import "./header.css";
 const LOGON = [
   { title: "Gallery", to: "/gallery" },
   { title: "Camera", to: "/camera" },
-  { title: "Result", to: "/result" },
   { title: "Test", to: "/test" },
 ];
 const LOGOFF = [
   { title: "Login", to: "/auth/login" },
   { title: "Camera", to: "/camera" },
-  { title: "Result", to: "/result" },
 ];
 
 //현재 로컬스토리지에 저장되어 있는 걸로 판단!
@@ -53,7 +51,7 @@ function Header({ noBackBtn, setUserTemp, onLogout, logged }) {
         to="/"
         activeStyle={activestyle}
       >
-        <p className="ml-12 mr-12 text-5xl">MIA</p>
+        <p className="ml-12 mr-12 text-5xl text-white font-semibold">MIA</p>
       </NavLink>
       <div className="menu w-5/6">
         {logged ? (
