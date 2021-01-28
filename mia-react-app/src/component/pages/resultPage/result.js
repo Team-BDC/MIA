@@ -4,9 +4,9 @@ export default styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 450px;
-  width: 100%;
-  border: 2px solid gray;
-  margin: 0 15px;
+  width : auto;
+  height : 330px;
+  border: 4px dashed gray;
+  margin: 0 30px;
   font-size: 4em;
 `;

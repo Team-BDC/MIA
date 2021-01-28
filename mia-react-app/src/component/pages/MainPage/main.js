@@ -1,18 +1,10 @@
 import "./main.css";
 import img1 from './anime.png';
-
-
-const CameraButton = ({ history }) => (
-  <button
-    className="rounded-full font h-16 bg-gray-900 text-white p-2 mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300 btn-temp text-3xl"
-    onClick={ () => {history.push("/camera")}}
-  >Camera
-  </button>
-);
+import CameraButton from "../../shared/CameraButton";
 
 const FileButton = ({ history }) => (
   <button
-    className="rounded-full font h-16 bg-gray-900 text-white p-2 mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300 btn-temp text-3xl"
+    className="rounded-full font h-16 bg-gray-900 text-white p-2 mt-2 cursor-pointer hover:bg-gray-400 hover:text-white btn-temp text-3xl"
     onClick={() =>{history.push("/upload")}}
   >File
   </button>

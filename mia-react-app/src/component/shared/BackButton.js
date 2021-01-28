@@ -11,7 +11,7 @@ const BackButton = ({ children, onClick }) => (
       // const path = '/upload'
     >
       {/* {children} */}
-      back
+      Back
     </button>
   </Link>
 );
