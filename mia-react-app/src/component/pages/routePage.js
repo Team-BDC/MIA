@@ -2,7 +2,7 @@ import MainLayout from "../layout/MainLayout";
 import { Route, Switch } from "react-router-dom";
 import Camera from "./CameraPage/camera";
 import Gallery from "./galleryPage/gallery.js";
-import Main from "./main";
+import Main from "./MainPage/main.js";
 import Result from "./resultPage/resultPage";
 import Upload from "./UploadPage/Upload";
 
