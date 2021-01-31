@@ -2,9 +2,9 @@ import { NavLink } from "react-router-dom";
 import "./header.css";
 
 const LOGON = [
-  { title: "Gallery", to: "/gallery" },
+  // { title: "Gallery", to: "/gallery" },
   { title: "Camera", to: "/camera" },
-  { title: "Test", to: "/test" },
+  { title: "Gallery", to: "/test" },
 ];
 const LOGOFF = [
   { title: "Login", to: "/auth/login" },
@@ -15,12 +15,12 @@ const LOGOFF = [
 //메인화면에 로고 넣고 그건 메인으로 연결되게!
 const CustomNavLink = ({ title, to }) => {
   const activestyle = {
-    color: "white",
+    color: "",
     fontWeight: "800",
   };
   return (
     <NavLink
-      className="font lg:inline-flex lg:w-auto px-3 py-4 mr-1 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+      className="font lg:inline-flex lg:w-auto px-3 py-4 mr-1 rounded text-gray-300 items-center justify-center hover:bg-gray-400 hover:text-yellow-300"
       activeStyle={activestyle}
       exact
       to={to}
@@ -33,7 +33,7 @@ const CustomNavLink = ({ title, to }) => {
 function Header({ noBackBtn, setUserTemp, onLogout, logged }) {
   console.log("this is Header", logged);
   const activestyle = {
-    color: "white",
+    color: "yellow-300",
     fontWeight: "800",
   };
   // 현재 새로고침하면 로그인 유지 안되는데(userInfo 남아있는데 state가 없음)
@@ -44,14 +44,14 @@ function Header({ noBackBtn, setUserTemp, onLogout, logged }) {
   //3. 로그아웃 /로그인 시 헤더 내용 다르게
 
   return (
-    <header className="mia_font flex items-center bg-gray-800 h-1/6 flex-wrap w-screen text-xl">
+    <header className="mia_font flex items-center bg-white flex-wrap w-screen text-xl text-black">
       <NavLink
-        className="lg:inline-flex lg:w-auto w-1/6 lg:px-auto py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+        className="lg:inline-flex lg:w-auto w-1/6 lg:px-auto py-2 rounded text-black items-center justify-center hover:bg-black hover:text-yellow-300"
         exact
         to="/"
         activeStyle={activestyle}
       >
-        <p className="ml-12 mr-12 text-5xl text-white font-semibold">MIA</p>
+        <p className="ml-12 mr-12 text-5xl text-black font-semibold hover:bg-black hover:text-yellow-300">MIA</p>
       </NavLink>
       <div className="menu w-5/6">
         {logged ? (
@@ -65,7 +65,7 @@ function Header({ noBackBtn, setUserTemp, onLogout, logged }) {
                 ></CustomNavLink>
               ))}
               <button //로그아웃 처리 해주어야함.
-                className="font lg:inline-flex lg:w-auto px-3 py-4 mr-1 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+                className="font lg:inline-flex lg:w-auto px-3 py-4 mr-1 rounded text-gray-400 items-center justify-center hover:bg-black hover:text-yellow-300"
                 to="/home"
                 activeStyle={activestyle}
                 onClick={onLogout}

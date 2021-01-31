@@ -27,7 +27,8 @@ function Result(props) {
   if(localStorageInfo){
     parsedUserInfo = JSON.parse(localStorageInfo);
     current_name = parsedUserInfo.username;
-    go="/gallery";
+    //go="/gallery"; 
+    go="/test";
   }else{
     parsedUserInfo = null;
     current_name = null;
