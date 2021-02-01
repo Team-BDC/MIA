@@ -15,6 +15,7 @@ export class AuthContainer extends Component {
   // 로그인 여부에 따라 컴포넌트를 업데이트한다.
   // 현재 유저 정보의 저장
   componentDidUpdate(prevProps, prevState) {
+    console.log("여긴 auth container", this.props.history);
     const { history } = this.props;
 
     if (prevProps.kind !== this.props.kind) {
