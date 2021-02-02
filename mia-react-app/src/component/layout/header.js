@@ -51,7 +51,9 @@ function Header({ noBackBtn, setUserTemp, onLogout, logged }) {
         to="/"
         activeStyle={activestyle}
       >
-        <p className="ml-12 mr-12 text-5xl text-black font-semibold hover:bg-black hover:text-yellow-300">MIA</p>
+        <p className="ml-12 mr-12 text-5xl text-black font-semibold hover:bg-black hover:text-yellow-300">
+          MIA
+        </p>
       </NavLink>
       <div className="menu w-5/6">
         {logged ? (

@@ -18,12 +18,14 @@ import { Link } from "react-router-dom";
 const drawerWidth = 240; //사이드바 ~
 const LOGON = [
   // { title: "Gallery", to: "/gallery" },
-  { title: "Camera", to: "/camera" },
-  { title: "Gallery", to: "/test" },
+  { title: "사진찍기", to: "/camera" },
+  { title: "파일업로드", to: "/camera" },
+  { title: "갤러리", to: "/test" },
 ];
 const LOGOFF = [
   { title: "사진찍기", to: "/camera" },
   { title: "파일업로드", to: "/upload" },
+  { title: "테스트페이지", to: "/test" },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -87,6 +89,7 @@ export default function PersistentDrawerRight(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  console.log("네비에욤", props);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -149,22 +152,46 @@ export default function PersistentDrawerRight(props) {
         </div>
         <Divider />
         <List>
-          {LOGOFF.map((text, index) => (
-            <Link to={text.to}>
-              <ListItem button key={index}>
-                {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <InboxIcon />}</ListItemIcon> */}
-                <ListItemText primary={text.title} />
-              </ListItem>
-            </Link>
-          ))}
+          {!props.logged &&
+            LOGOFF.map((text, index) => (
+              <Link to={text.to}>
+                <ListItem button key={index}>
+                  {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <InboxIcon />}</ListItemIcon> */}
+                  <ListItemText primary={text.title} />
+                </ListItem>
+              </Link>
+            ))}
+          {props.logged &&
+            LOGON.map((text, index) => (
+              <Link to={text.to}>
+                <ListItem button key={index}>
+                  {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <InboxIcon />}</ListItemIcon> */}
+                  <ListItemText primary={text.title} />
+                </ListItem>
+              </Link>
+            ))}
         </List>
         <Divider />
         <List>
-          <Link to="/auth/login">
-            <ListItem button>
-              <ListItemText primary="로그인" />
+          {!props.logged && (
+            <Link to="/auth/login">
+              <ListItem button>
+                <ListItemText primary="로그인" />
+              </ListItem>
+            </Link>
+          )}
+          {props.logged && (
+            <ListItem button onClick="">
+              <a
+                onClick={(e) => {
+                  e.preventDefault();
+                  props.logout();
+                }}
+              >
+                로그아웃
+              </a>
             </ListItem>
-          </Link>
+          )}
           {/* {["로그인"].map((text, index) => (
             <ListItem button key={text}>
               {/* <ListItemIcon>{index % 2 === 0 ? <MailIcon /> : <MailIcon />}</ListItemIcon> 

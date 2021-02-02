@@ -6,6 +6,7 @@ import Gallery from "./galleryPage/gallery.js";
 import Main from "./MainPage/main.js";
 import Result from "./resultPage/resultPage";
 import Upload from "./UploadPage/Upload";
+import Test from "./Test";
 
 import Auth from "./Auth";
 import NotFound from "./NotFound";
@@ -15,7 +16,7 @@ import Gallery2 from "./galleryPage/gallery2.js";
 
 // 페이지네이터
 // import Connect from "../gallery/InsertForm/connect.js";
-import Test from "../gallery/InsertForm/test.js";
+//import Test from "../gallery/InsertForm/test.js";
 
 const RoutePage = (props) => {
   // const userId = 3;
@@ -47,6 +48,11 @@ const RoutePage = (props) => {
             path={"/result"}
             render={(allProps) => <Result {...props} {...allProps} />}
           />
+          {/* <Route
+            exact
+            path={"/test"}
+            render={(allProps) => <Result {...props} {...allProps} />}
+          /> */}
           {/* 페이지네이터 테스트 */}
           <Route
             exact
