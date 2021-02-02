@@ -1,8 +1,7 @@
 function Footer() {
   return (
     <>
-      <div className="w-screen h-1/6 flex items-center flex-wrap">
-      </div>
+      <div className="w-screen h-0.5 flex items-center flex-wrap"></div>
     </>
   );
 }

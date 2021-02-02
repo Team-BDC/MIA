@@ -4,18 +4,18 @@ import { Route, Switch } from "react-router-dom";
 import Camera from "./CameraPage/camera";
 import Gallery from "./galleryPage/gallery.js";
 import Main from "./MainPage/main.js";
-import Result from "./resultPage/resultPage";
-import Upload from "./UploadPage/Upload";
+import ResultContainer from "./resultPage/resultContainer";
 
 import Auth from "./Auth";
 import NotFound from "./NotFound";
 
 // gallery 연동
 import Gallery2 from "./galleryPage/gallery2.js";
+import UploadContainer from "./UploadPage/UploadContainer";
 
 // 페이지네이터
 // import Connect from "../gallery/InsertForm/connect.js";
-import Test from "../gallery/InsertForm/test.js";
+//import Test from "../gallery/InsertForm/test.js";
 
 const RoutePage = (props) => {
   // const userId = 3;
@@ -40,20 +40,20 @@ const RoutePage = (props) => {
           <Route
             exact
             path={"/upload"}
-            render={(allProps) => <Upload {...props} {...allProps} />}
+            render={(allProps) => <UploadContainer {...props} {...allProps} />}
           />
           <Route
             exact
             path={"/result"}
-            render={(allProps) => <Result {...props} {...allProps} />}
+            render={(allProps) => <ResultContainer {...props} {...allProps} />}
           />
-          {/* 페이지네이터 테스트 */}
           <Route
             exact
             path={"/test"}
-            render={(allProps) => <Test {...props} {...allProps} />}
+            render={(allProps) => <ResultContainer {...props} {...allProps} />}
           />
-          {/* <Route exact path={`/${userId}/gallery`} component={Gallery} /> */}
+          {/* 페이지네이터 테스트 */}
+
           <Route
             exact
             path={"/gallery"}

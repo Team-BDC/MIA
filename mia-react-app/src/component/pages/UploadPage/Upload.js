@@ -66,38 +66,64 @@ class Upload extends Component {
     let profile_preview = null;
     if (this.state.file !== "") {
       profile_preview = (
-        <img className="profile_preview upload_img" src={this.state.previewURL}></img>
+        <img
+          className="profile_preview upload_img"
+          src={this.state.previewURL}
+        ></img>
       );
       profile_url = this.state.previewURL;
       img_name = this.state.img_name;
       //console.log(profile_url);
     }
     return (
-      <div>
-
-        <div className="filebox flex justify-center justify-items-center mt-10 mb-2"> 
-          <label for="file">select</label> 
-          <input 
-            type="file"
-            id="file"
-            accept="image/jpg, image/png,image/jpeg,image/gif"
-            name="profile_img"
-            onChange={(e) => this.handleFileOnChange(e)}/> 
-          <input className="upload-name" value={img_name} />
-        </div>
-
-        <div className="flex justify-center max-h-96">
-            {profile_preview}
-        </div>
-        <div className = "upload mt-3">
-          <button
-            className="rounded-full font w-56 h-16 m-4 px-4 bg-gray-900 text-white cursor-pointer hover:bg-gray-400 hover:text-white mt-0 text-3xl"
-            onClick={() => {
-              this.handlePost();
-            }}
-          >
-          Upload
-          </button>
+      <div className="w-full h-full flex justify-center items-center">
+        <div className="filebox flex flex-col justify-center items-center w-full h-full justify-items-center">
+          <div className="w-2/5 h-2/3 flex justify-center items-center flex-col bg-white border-20  border-white	 rounded-large mb-5">
+            {this.state.previewURL ? (
+              <img src={this.state.previewURL} alt="error"></img>
+            ) : (
+              <>
+                <img
+                  className="w-1/4 h-auto"
+                  src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FOB4lX%2FbtqVqFUMrz5%2Fe0ENv6GOAXmbLDORHWciu1%2Fimg.png"
+                  alt="oops"
+                />
+                <p className="font-NEXEN font-grey text-3xl mt-4 text-gray-500">
+                  NO
+                  <br /> IMAGE
+                </p>
+              </>
+            )}
+          </div>
+          <div className="flex flex-row justify-center items-center">
+            <input
+              className="upload-name font-G h-4"
+              value={img_name || "이미지를 선택하세요"}
+            />
+            {!this.state.previewURL ? (
+              <>
+                <label htmlFor="file" className="font-G text-yellow-300">
+                  선택
+                </label>
+                <input
+                  type="file"
+                  id="file"
+                  accept="image/jpg, image/png,image/jpeg,image/gif"
+                  name="profile_img"
+                  onChange={(e) => this.handleFileOnChange(e)}
+                />
+              </>
+            ) : (
+              <button
+                className="font-G text-yellow-300 uploadButton"
+                onClick={() => {
+                  this.handlePost();
+                }}
+              >
+                업로드
+              </button>
+            )}
+          </div>
         </div>
 
         {this.state.uploadSuccess && (
@@ -110,7 +136,6 @@ class Upload extends Component {
           //결과 페이지에 props로 넘겨주고 싶은거 있으면
           //state : {...} 안에 key:props 형태로 넘겨주면 result페이지에서 props.location.state."지정한 키"형태로 호출할 수 있습니다!
         )}
-        
       </div>
     );
   }
