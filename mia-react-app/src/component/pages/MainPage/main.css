@@ -17,6 +17,15 @@
     font-weight: normal;
     src: local('Broadcast Matter Regular'), url('Broadcast_Matter.woff') format('woff');
     }
+
+@font-face {
+     font-family: 'GmarketSansLight';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+    }
+
+
 /* Me In Animation */
 .main_font{
     /* font-family: 'Permanent Marker', cursive; */
@@ -30,6 +39,10 @@
  /*   font-family: 'Yusei Magic', sans-serif;*/
     /* font-family: 'Work Sans', sans-serif; */
     font-family: 'NEXEN_TIRE_Bold';
+}
+
+.light_font{
+    font-family: 'GmarketSansLight';
 }
 
 .main{
