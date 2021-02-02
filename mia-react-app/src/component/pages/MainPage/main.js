@@ -20,8 +20,8 @@ function Main(props) {
       <div className="w-full h-full bg-yellow-300">
         <div className="flex w-auto h-4/6 main justify-center item-center">
           <div className="flex w-full">
-            <p className="mt-24 w-full flex h-5/6 main_font text-9xl text-black justify-center items-center">
-              Me in Animati o n
+            <p className="flex mt-24 w-full flex h-5/6 main_font text-9xl text-black justify-center items-center">
+              Me in Animation
             </p>
             {/* <img src ={img1} alt="h-1/6"></img> */}
           </div>
