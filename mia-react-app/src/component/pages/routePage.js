@@ -2,7 +2,6 @@ import MainLayout from "../layout/MainLayout";
 import { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import Camera from "./CameraPage/camera";
-import Gallery from "./galleryPage/gallery.js";
 import Main from "./MainPage/main.js";
 import ResultContainer from "./resultPage/resultContainer";
 
@@ -15,7 +14,7 @@ import UploadContainer from "./UploadPage/UploadContainer";
 
 // 페이지네이터
 // import Connect from "../gallery/InsertForm/connect.js";
-//import Test from "../gallery/InsertForm/test.js";
+import Test from "../gallery/InsertForm/test.js";
 
 const RoutePage = (props) => {
   // const userId = 3;
@@ -50,7 +49,7 @@ const RoutePage = (props) => {
           <Route
             exact
             path={"/test"}
-            render={(allProps) => <ResultContainer {...props} {...allProps} />}
+            render={(allProps) => <Test {...props} {...allProps} />}
           />
           {/* 페이지네이터 테스트 */}
 
