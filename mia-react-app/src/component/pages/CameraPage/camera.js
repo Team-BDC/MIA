@@ -82,7 +82,10 @@ function Camera(props) {
 
     return (
       <Template title={title}>
-        <div className={cx("Content")}>
+
+        <div>
+        
+        <div className={cx("Content"), "flex justify-center"}>
           {isVideo && (
             <Webcam
               audio={false}
@@ -92,12 +95,13 @@ function Camera(props) {
               className="w-3/5 h-auto"
             />
           )}
-
+        
           {imgSrc && !isVideo && (
             <img src={imgSrc} className="w-3/5 h-auto" id="capture" />
           )}
-
-          <div className="flex items-center justify-center mt-4 mx-2">
+      </div>
+  
+          <div className="flex items-center justify-center mt-4 mx-2 space-x-2">
             {isVideo ? (
               <SmallButton onClick={capture}>사진찍기</SmallButton>
             ) : (
@@ -114,7 +118,9 @@ function Camera(props) {
             >
               업로드
             </SmallButton>
+      
           </div>
+
         </div>
 
         {/* post는 success 뜨긴 하던데 여기 부터 안되여 ㅠ ㅠ흑흑 */}

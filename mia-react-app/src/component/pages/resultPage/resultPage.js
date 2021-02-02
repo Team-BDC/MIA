@@ -85,7 +85,7 @@ function Result(props) {
           href={`data:image/jpg;base64,${props.location.state.img}`}
           download="test.jpg"
         >
-          <SaveButton buttonName="저장"></SaveButton>
+          <SaveButton buttonName="저장">사진 저장</SaveButton>
         </a>
 
         <Link to={go}>
@@ -94,7 +94,7 @@ function Result(props) {
               handlePOST();
             }}
             buttonName="갤러리"
-          ></GalleryButton>
+          >갤러리에 추가</GalleryButton>
         </Link>
       </div>
 
