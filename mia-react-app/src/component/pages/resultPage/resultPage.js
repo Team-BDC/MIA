@@ -66,15 +66,15 @@ function Result(props) {
   }
 
   return (
-    <div className="bg-yellow-300 h-full p-4 outer">
+    <div className="bg-yellow-300 h-full p-4 outer flex items-center justify-center flex-col">
       {/* <p className={cx("Title")}>결과페이지</p> */}
       {/* <div className="self-center"> */}
       <div className={(cx("App"), "mb-3")}>
         <Item>
-          <div className="bg-white h-4/6 border-white App p-4 rounded-2xl mb-4 mt-2">
+          <div className="bg-white h-4/6 border-white App p-4 rounded-2xl mb-4 mt-2 rounded-large">
             {/* <div className> */}
             <img
-              className="h-full m-0"
+              className="h-full m-0 "
               src={`data:image/jpg;base64,${props.location.state.img}`}
               alt="none"
             />
@@ -102,7 +102,7 @@ function Result(props) {
       </div>
 
       <div className="flex justify-center mt-5 space-x-4">
-        <p className="flex font text-gray-400 text-xl">
+        <p className="flex font text-gray-500 text-lg">
           {" "}
           다시 한 번 해보고 싶다면?{" "}
         </p>
