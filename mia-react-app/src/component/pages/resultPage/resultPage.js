@@ -34,13 +34,12 @@ function Result(props) {
     go = "/auth/login";
   }
 
-  profile_url = props.location.state.img;
-  img_name = props.location.state.name;
+  console.log(props);
 
   function handlePOST() {
     let data = {
-      profile_url: profile_url,
-      img_name: img_name,
+      profile_url: props.location.state.img,
+      img_name: props.location.state.name,
     };
     // 이미지 갤러리로 보내기~~
 
@@ -56,7 +55,6 @@ function Result(props) {
       )
       .then((res) => {
         console.log(res);
-        // this.setState({ ...this.state, result: res.data });
         alert("success");
       })
       .catch((err) => {

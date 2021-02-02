@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -19,13 +19,12 @@ const drawerWidth = 240; //사이드바 ~
 const LOGON = [
   // { title: "Gallery", to: "/gallery" },
   { title: "사진찍기", to: "/camera" },
-  { title: "파일업로드", to: "/camera" },
+  { title: "파일업로드", to: "/upload" },
   { title: "갤러리", to: "/test" },
 ];
 const LOGOFF = [
   { title: "사진찍기", to: "/camera" },
   { title: "파일업로드", to: "/upload" },
-  { title: "테스트페이지", to: "/test" },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -89,8 +88,7 @@ export default function PersistentDrawerRight(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  console.log("네비에욤", props);
-
+  console.log(props);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
