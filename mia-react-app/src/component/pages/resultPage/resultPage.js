@@ -1,7 +1,6 @@
-import BackButton from "../../shared/BackButton";
 import SmallButton from "../../shared/SmallButton";
-import GalleryButton from "../../shared/GalleryButton";
-import SaveButton from "../../shared/SaveButton";
+import GalleryButton from "../../shared/r_Button";
+import SaveButton from "../../shared/r_Button";
 import { Link } from 'react-router-dom'
 
 import classNames from "classnames/bind";
@@ -91,7 +90,7 @@ function Result(props) {
             href={`data:image/jpg;base64,${props.location.state.img}`}
             download="test.jpg"
           >
-            <SaveButton buttonName="저장"></SaveButton>
+            <SaveButton buttonName="저장">사진 저장</SaveButton>
           </a>
 
          <Link to = {go}>
@@ -100,7 +99,7 @@ function Result(props) {
                 handlePOST();
               }}
               buttonName="갤러리"
-            > 
+            >갤러리에 추가 
             </GalleryButton>
           </Link>
         </div>
