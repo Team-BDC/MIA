@@ -1,7 +1,7 @@
 import SmallButton from "../../shared/SmallButton";
 import GalleryButton from "../../shared/r_Button";
 import SaveButton from "../../shared/r_Button";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 import classNames from "classnames/bind";
 import React from "react";
@@ -38,10 +38,12 @@ function Result(props) {
   function handlePOST() {
     let data = {
       profile_url: props.location.state.img,
-      img_name: props.location.state.name,
+      img_name: props.location.state.name
+        ? props.location.state.name
+        : "userImg.jpeg",
     };
     // 이미지 갤러리로 보내기~~
-
+    console.log("너 이름이 모니?:", data);
     axios
       .post(
         `http://localhost:8000/api/v1/mia/add_image/` + current_name,
@@ -58,7 +60,6 @@ function Result(props) {
       })
       .catch((err) => {
         console.log(err);
-        alert("fail");
       });
   }
 
@@ -94,7 +95,9 @@ function Result(props) {
               handlePOST();
             }}
             buttonName="갤러리"
-          >갤러리에 추가</GalleryButton>
+          >
+            갤러리에 추가
+          </GalleryButton>
         </Link>
       </div>
 
