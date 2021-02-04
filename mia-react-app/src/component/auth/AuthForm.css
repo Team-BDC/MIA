@@ -1,80 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap');
-*
-{
-    margin: 0;
-    padding: 0;
-    
-    
-    box-sizing: border-box;
-    font-family: 'Poppins,', sans-serif;
-}
-.body 
-{
-    overflow: auto;
-}
-.card{
-  position: relative;
-    left:420px;
-    top:280px;
-    width: 508px;
-    height: 360px;
-    transform-style: preserve-3d;
-    perspective: 500px;
-}
-.back{
-  
+
+.auth-form {
   position: absolute;
-  left: 0px;
-  top: 118.5px;
-  width: 1500px;
-  height: 750px;
-    background: #111111;
-  
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid gray;
+  border-radius: 3px;
+  width: 512px;
+  padding: 1rem;
 }
-.mia
-{
-    position: absolute;
-width: 226px;
-height: 56px;
-left: 75px;
-top: 36px;
-
-font-family: Playfair;
-font-style: normal;
-font-weight: normal;
-font-size: 64px;
-line-height: 85px;
-
-color: black;
-}
-
-.auth-form {position: absolute;
-  bottom:40px;
-  left: 0;
-  width: 100%;
-  height: 140%;
-  box-shadow: 0 15px 35px rgba(0,0,0,0,5);
-  border-radius: 15px;
-  background: rgba(83, 83, 83, 0.63);
-  transform-style: preserve-3d;
-  transition: 1s;
-  backface-visibility: hidden;
-  }
-  .mia2
-{position: absolute;
-    width: 800px;
-    height: 40px;
-    right: -20px;
-    top: 340px;
-    
-    font-family:Broadcast_Matter;
-    src:local("/psw/Broadcast_Matter.ttf");
-    font-style: normal;
-    font-weight: normal;
-    font-size: 160px;
-    line-height: 210px;
-    
-    color: #FAE04C;}
 .title {
   text-align: center; 
   font-size: 2rem;
@@ -83,24 +17,16 @@ color: black;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-.section{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #111111;
-}
+
 .error {
   display: flex;
   justify-content: center;
 }
 
 .message {
-  
   font-size: 1.25rem;
   font-weight: 500;
   color: red;
-  
 }
   
 
@@ -112,24 +38,10 @@ color: black;
 .input-title {
   font-size: 1.6rem;
   font-weight: 600;
-  margin-bottom: -1rem;
-  margin-left: 20px;
+  margin-bottom: 1rem;
 }
-.moon
-{
-    content: '';
-    position: absolute;
-    left: 90%;
-    top: 330px;
-    width: 270px;
-    height: 270px;
-    background: linear-gradient(rgb(240, 240, 18), rgb(243, 241, 243));
-    border-radius: 50%;
-    
-}
-input {
-  
 
+input {
   height: 3rem;
   outline: none;
   border: 1px solid gray;
@@ -140,14 +52,13 @@ input {
 }
   
 
-.line-wrapper + .line-wrapper + .line-wrapper2{
+.line-wrapper + .line-wrapper {
   margin-top: 1.5rem;
-  float: center;
 }
 
 .auth-button {
     height: 3rem;
-    margin-left:700px;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -161,14 +72,13 @@ input {
 }
   
   .description {
-    padding-top: 0rem;
+    padding-top: 1rem;
     padding-bottom: 0.5rem;
-    
+
     display: flex;
     flex-direction: row-reverse;
 
     font-size: 1.2rem;
-    color: yellow;
-    
+    color: black;
   }
 
