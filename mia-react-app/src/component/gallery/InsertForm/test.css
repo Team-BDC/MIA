@@ -4,16 +4,24 @@
     list-style: none;
     outline: none;
     justify-content: center;
+    background-color:white;
+    /* border-radius : 10px; */
   }
   .pagination > .active > a{
-    background-color: #212936;
+    /* background-color: #212936; */
     border-color: #212936;
-    color: #fff;
+    /* color: #fff; */
+    background-color:white;
+    color:black;
+    /* border-radius : 8px; */
   }
   .pagination > li > a{
     border: 1px solid #212936 ;
-    padding: 5px 10px;
+    padding: 8px 20px;
     outline: none;
     cursor: pointer;
+    background-color:black;
+    border-radius : 10px;
+
   }
  

@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const WrapperImages = styled.section`
-  max-width: 70rem;
+  max-width: 60rem;
   margin: 4rem auto;
   display: grid;
   grid-gap: 1em;

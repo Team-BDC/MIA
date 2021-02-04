@@ -3,19 +3,45 @@
 import Footer from "./footer";
 import Navigation from "./navigation";
 import HeaderContainer from "../../containers/HeaderContainer";
+// import Navbar from './Navbar'
+import Navbar from "./nav";
 
-const MainLayout = ({ children }) => {
+import { ToastContainer, toast } from 'material-react-toastify';
+
+const MainLayout = (props) => {
   return (
-    <div className="h-screen">
+    <div className="w-screen h-screen bg-white">
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {/* <Header /> */}
-      <HeaderContainer/>
-      <main className="flex md:inline-flex w-screen h-4/5">
-      {/*  <Navigation />*/}
-        <section className="w-screen">
-          <div className="w-screen text-md"> {children}</div>
+      <div className="flex justify-end h-1/6">
+        <Navbar {...props} />
+        {/* <HeaderContainer />  */}
+      </div>
+      {/* 
+      <div className= "flex h-1/6">
+        <HeaderContainer className="h-1/2"/> 
+      </div> */}
+
+      <main className="flex justify-center md:-flex w-screen h-4/6">
+        {/*  <Navigation />*/}
+        <section className="justify-center items-center w-5/6">
+          <div className="justify-center items-center w-auto h-full text-md">
+            {" "}
+            {props.children}
+          </div>
         </section>
       </main>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

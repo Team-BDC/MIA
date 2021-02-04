@@ -2,14 +2,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap');
+@font-face {
+    font-family: 'NEXEN_TIRE_Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/NEXEN_TIRE_Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .font{
  /*   font-family: 'Yusei Magic', sans-serif;*/
-    font-family: 'Work Sans', sans-serif;
+    /* font-family: 'Work Sans', sans-serif; */
+    font-family: 'NEXEN_TIRE_Bold';
 }
 
 .mia_font{
     font-family: 'Ropa Sans', sans-serif;
+    /* font-family: 'NEXEN_TIRE_Bold'; */
 }
 
 
