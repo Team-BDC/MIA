@@ -56,10 +56,10 @@ function InsertForm({ logged }) {
     });
 
   return (
-    <div>
-      <center>
-        <p>{parsedUserInfo.username}의 갤러리 입니다.</p>
-      </center>
+    <div className="flex flex-col justify-center items-center">
+      
+        <h2>{parsedUserInfo.username}의 갤러리 입니다.</h2>
+      
       <GlobalStyle />
       <WrapperImages>
         {logged ? (

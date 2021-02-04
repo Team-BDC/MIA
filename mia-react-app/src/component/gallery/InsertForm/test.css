@@ -4,7 +4,7 @@
     list-style: none;
     outline: none;
     justify-content: center;
-    background-color:white;
+
     /* border-radius : 10px; */
   }
   .pagination > .active > a{
