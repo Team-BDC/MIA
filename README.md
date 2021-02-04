@@ -237,7 +237,15 @@
 > 
 >   |  HTTP |  Path |  Method |  Permission |  목적 |
 >   | --- | --- | --- | --- | --- |
->   |**GET,POST** |/api/v1/mia/gallery_test| OPTIONS | (테스트용)갤러리 호출|
->   |**GET,POST** |/api/v1/mia/model| OPTIONS | None |사진 변환 모델 호출|
+>   |**GET** |/api/v1/mia/image_list/<str:user_name>| OPTIONS | Access Token | 유저 갤러리 호출 |
+>   |**POST** |/api/v1/mia/add_imae/<str:user_name>| OPTIONS | Access Token | 갤러리에 이미지 추가|
+>   |**POST** |/api/v1/mia/model| OPTIONS | None |사진 변환 모델 호출|
 
-## references
+> - 모니터링 관련 API
+> 
+>   |  HTTP |  Path |  Method |  Permission |  목적 |
+>   | --- | --- | --- | --- | --- |
+>   |**GET** |/| OPTIONS | None | Prometheus|
+>   |**GET** |/metrics| OPTIONS | None | Prometheus metrics 수집|
+
+
