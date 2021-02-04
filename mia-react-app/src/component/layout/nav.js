@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -89,6 +89,19 @@ export default function PersistentDrawerRight(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   console.log(props);
+
+  useEffect(() => {
+    const localStorageInfo = localStorage.getItem("userInfo");
+
+    if (localStorageInfo) {
+      const parsedUserInfo = JSON.parse(localStorageInfo);
+      props.setUserTemp({
+        id: parsedUserInfo.id,
+        username: parsedUserInfo.username,
+        token: parsedUserInfo.token,
+      });
+    }
+  }, []);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
