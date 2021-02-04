@@ -1,0 +1,18 @@
+.cursor {
+    z-index : 1000;
+    border-radius : 50%;
+    width : 70px;
+    height : 70px;
+    background: #fff;
+    pointer-events: none;
+    overflow: hidden;
+    transition: 0.1s;
+    transform : translate(-50%, -50%);
+    mix-blend-mode: difference;
+    position : fixed;
+}
+
+
+div span:hover ~ .cursor{
+    transform : scale(6);
+}

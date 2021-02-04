@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import clsx from "clsx";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles, useTheme, withTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import Toolbar from "@material-ui/core/Toolbar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -15,7 +15,10 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Link } from "react-router-dom";
 
-const drawerWidth = 240; //사이드바 ~
+import { Mouse } from "../shared/Mouse/Mouse";
+
+const drawerWidth = 380; //사이드바 ~
+
 const LOGON = [
   // { title: "Gallery", to: "/gallery" },
   { title: "사진찍기", to: "/camera" },
@@ -23,6 +26,7 @@ const LOGON = [
   { title: "갤러리", to: "/test" },
 ];
 const LOGOFF = [
+  { title: "로그인", to: "/auth/login" },
   { title: "사진찍기", to: "/camera" },
   { title: "파일업로드", to: "/upload" },
 ];
@@ -57,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    backgroundColor: "black",
   },
   drawerHeader: {
     display: "flex",
@@ -82,26 +87,30 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginRight: 0,
   },
+  customHoverFocus: {
+    color: "white",
+    "&:hover, &.Mui-focusVisible": {
+      backgroundColor: "white",
+      color: "black",
+    },
+  },
+  customList: {
+    color: "white",
+  },
+  listItemText: {
+    fontSize: "2em",
+  },
+  listHeader: {
+    fontSize: "2.5em",
+    padding: theme.spacing(0, 2),
+  },
 }));
 
-export default function PersistentDrawerRight(props) {
+export default function PersistentDrawerRight({ props, logged, onLogout }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  console.log(props);
 
-  useEffect(() => {
-    const localStorageInfo = localStorage.getItem("userInfo");
-
-    if (localStorageInfo) {
-      const parsedUserInfo = JSON.parse(localStorageInfo);
-      props.setUserTemp({
-        id: parsedUserInfo.id,
-        username: parsedUserInfo.username,
-        token: parsedUserInfo.token,
-      });
-    }
-  }, []);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -152,8 +161,12 @@ export default function PersistentDrawerRight(props) {
           paper: classes.drawerPaper,
         }}
       >
+        <Mouse />
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton
+            className={classes.customHoverFocus}
+            onClick={handleDrawerClose}
+          >
             {theme.direction === "rtl" ? (
               <ChevronLeftIcon />
             ) : (
@@ -162,54 +175,58 @@ export default function PersistentDrawerRight(props) {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          {!props.logged &&
-            LOGOFF.map((text, index) => (
-              <Link to={text.to}>
-                <ListItem button key={index}>
-                  {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <InboxIcon />}</ListItemIcon> */}
-                  <ListItemText primary={text.title} />
-                </ListItem>
-              </Link>
-            ))}
-          {props.logged &&
-            LOGON.map((text, index) => (
-              <Link to={text.to}>
-                <ListItem button key={index}>
-                  {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <InboxIcon />}</ListItemIcon> */}
-                  <ListItemText primary={text.title} />
-                </ListItem>
-              </Link>
-            ))}
+        <List className={classes.customList}>
+          <ListItemText
+            classes={{ primary: classes.listHeader }}
+            primary="어서오세요!"
+          />
+        </List>
+        <br></br>
+        <br></br>
+        <br></br>
+        <List className={classes.customList}>
+          {logged ? (
+            <>
+              {LOGON.map((text, index) => (
+                <Link to={text.to}>
+                  <ListItem button key={index} color="white">
+                    {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <InboxIcon />}</ListItemIcon> */}
+                    <ListItemText
+                      classes={{ primary: classes.listItemText }}
+                      primary={text.title}
+                    />
+                  </ListItem>
+                </Link>
+              ))}
+              <List className={classes.customList}>
+                <Link to="/home">
+                  <ListItem button>
+                    <ListItemText
+                      classes={{ primary: classes.listItemText }}
+                      primary="로그아웃"
+                      onClick={onLogout}
+                    />
+                  </ListItem>
+                </Link>
+              </List>
+            </>
+          ) : (
+            <>
+              {LOGOFF.map((text, index) => (
+                <Link to={text.to}>
+                  <ListItem button key={index} color="white">
+                    {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <InboxIcon />}</ListItemIcon> */}
+                    <ListItemText
+                      classes={{ primary: classes.listItemText }}
+                      primary={text.title}
+                    />
+                  </ListItem>
+                </Link>
+              ))}
+            </>
+          )}
         </List>
         <Divider />
-        <List>
-          {!props.logged && (
-            <Link to="/auth/login">
-              <ListItem button>
-                <ListItemText primary="로그인" />
-              </ListItem>
-            </Link>
-          )}
-          {props.logged && (
-            <ListItem button onClick="">
-              <a
-                onClick={(e) => {
-                  e.preventDefault();
-                  props.logout();
-                }}
-              >
-                로그아웃
-              </a>
-            </ListItem>
-          )}
-          {/* {["로그인"].map((text, index) => (
-            <ListItem button key={text}>
-              {/* <ListItemIcon>{index % 2 === 0 ? <MailIcon /> : <MailIcon />}</ListItemIcon> 
-              <ListItemText primary={text} />
-            </ListItem>
-          ))} */}
-        </List>
       </Drawer>
     </div>
   );
