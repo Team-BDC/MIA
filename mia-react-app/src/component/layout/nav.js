@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme, withTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -106,10 +106,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PersistentDrawerRight({ props, logged, onLogout }) {
+export default function PersistentDrawerRight({ setUserTemp, logged, onLogout, logout }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
+  
+  useEffect(() => {
+    const localStorageInfo = localStorage.getItem("userInfo");
+
+    if (localStorageInfo) {
+      const parsedUserInfo = JSON.parse(localStorageInfo);
+      setUserTemp({
+        id: parsedUserInfo.id,
+        username: parsedUserInfo.username,
+        token: parsedUserInfo.token,
+      });
+    }
+  }, []);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -204,7 +218,7 @@ export default function PersistentDrawerRight({ props, logged, onLogout }) {
                     <ListItemText
                       classes={{ primary: classes.listItemText }}
                       primary="로그아웃"
-                      onClick={onLogout}
+                      onClick={logout}
                     />
                   </ListItem>
                 </Link>

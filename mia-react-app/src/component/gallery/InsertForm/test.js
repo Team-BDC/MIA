@@ -75,21 +75,21 @@ function Test() {
 
   return (
 
-    <div className="grid grid-cols-1 gap-3 place-content-center bg-yellow-300 h-full justify-center">
+    <div className="w-full h-full bg-yellow-300 flex flex-col justify-center items-center">
 
-      <div className="flex">
+      <div className="h-12 w-full relative top-0 left-0 text-center">
       {/* <center className="flex justify-center m-3">  */}
-        <p className="light_font text-xl justify-center">{parsedUserInfo.username}의 갤러리 입니다.</p>
+        <p className="light_font text-xl justify-center items-center">{parsedUserInfo.username}의 갤러리 입니다.</p>
       {/* </center> */}
       </div>
 
-      <div className="flex justify-center"> 
+      <div className="flex justify-center h-4/6 w-full"> 
         <GlobalStyle />
         <WrapperImages>{data}</WrapperImages>
       </div>
-      <div className="flex justify-center">
+      
 
-    
+      <div className="h-8 w-full bg-yellow-300">
       <ReactPaginate
         previousLabel={"prev"}
         previousClassName="light_font h-full text-yellow-300 hover:text-white"
@@ -107,9 +107,9 @@ function Test() {
         containerClassName={"pagination"}
         subContainerClassName={"pages pagination"}
         activeClassName={"active"}
-        
-      />
-      </div>
+        className="bg-yellow-300"
+      /></div>
+  
 
     </div>
 
