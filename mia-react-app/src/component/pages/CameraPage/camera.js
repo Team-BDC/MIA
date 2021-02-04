@@ -3,6 +3,7 @@ import SmallButton from "../../shared/SmallButton";
 import Webcam from "react-webcam";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
+import { toast } from 'material-react-toastify';
 
 import Template from "../../shared/template";
 import { Link } from "react-router-dom";
@@ -72,11 +73,29 @@ function Camera(props) {
           });
 
           console.log("result:", values);
-          alert("success");
+          
+        toast.success("✔ 업로드 성공! ",{
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        
+        });
+
         })
         .catch((err) => {
           console.log(err);
-          alert("fail");
+          toast.error("❕❕ 업로드 실패",{
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        
+        });
         });
     }
 

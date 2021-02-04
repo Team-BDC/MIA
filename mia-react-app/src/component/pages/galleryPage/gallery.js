@@ -9,20 +9,18 @@ import { createGlobalStyle } from "styled-components";
 
 // Style
 const GlobalStyle = createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
+  *{
+    margin : 4em;
     box-sizing: border-box;
-  }
-
-  body {
-    font-family: sans-serif;
+    max-height: 300px;
+    min-height: 300px;
   }
 `;
 
 const WrapperImages = styled.section`
-  max-width: 70rem;
-  margin: 4rem auto;
+  max-width: 60rem;
+  max-height: 8rem;
+  // min-width: 8rem;
   display: grid;
   grid-gap: 1em;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

@@ -2,7 +2,7 @@ import SmallButton from "../../shared/SmallButton";
 import GalleryButton from "../../shared/r_Button";
 import SaveButton from "../../shared/r_Button";
 import { Link } from 'react-router-dom'
-
+import { toast } from 'material-react-toastify';
 import classNames from "classnames/bind";
 import React from "react";
 import Item from "./result";
@@ -54,11 +54,28 @@ function Result(props) {
       )
       .then((res) => {
         console.log(res);
-        alert("success");
+
+        toast.success("✔ 저장 성공! ",{
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        
+
       })
       .catch((err) => {
         console.log(err);
-        alert("fail");
+        toast.error("❕❕ 저장 실패",{
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
       });
   }
 

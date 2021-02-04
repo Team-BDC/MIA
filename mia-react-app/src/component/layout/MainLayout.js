@@ -6,9 +6,22 @@ import HeaderContainer from "../../containers/HeaderContainer";
 // import Navbar from './Navbar'
 import Navbar from "./nav";
 
+import { ToastContainer, toast } from 'material-react-toastify';
+
 const MainLayout = (props) => {
   return (
     <div className="w-screen h-screen bg-white">
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {/* <Header /> */}
       <div className="flex justify-end h-1/6">
         <Navbar {...props} />

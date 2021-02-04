@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import "./Upload.css";
+import { toast } from 'material-react-toastify';
+import 'material-react-toastify/dist/ReactToastify.css';
 
 let profile_url = null; //-> axios로 json 형태로 보내기 !~ -> views.py로 ~ -> 사진 url
 let img_name = null; //-> axios로 json 형태로 보내기 !~ -> views.py로 ~ -> 파일 저장할 때 사용
 
 class Upload extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -38,10 +41,31 @@ class Upload extends Component {
       .then((res) => {
         console.log(res);
         this.setState({ ...this.state, uploadSuccess: true, result: res.data });
+        
+        toast.success("✔ 업로드 성공! ",{
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        
+        });
+      
       })
       .catch((err) => {
         console.log(err);
-        alert("fail");
+       
+        toast.error("❕❕ 업로드 실패",{
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        
+        });
+        
       });
   }
 
@@ -63,6 +87,8 @@ class Upload extends Component {
   };
 
   render() {
+
+  
     let profile_preview = null;
     if (this.state.file !== "") {
       profile_preview = (
@@ -76,6 +102,7 @@ class Upload extends Component {
       //console.log(profile_url);
     }
     return (
+     
       <div className="w-full h-full flex justify-center items-center">
         <div className="filebox flex flex-col justify-center items-center w-full h-full justify-items-center">
           <div className="w-2/5 h-2/3 flex justify-center items-center flex-col bg-white border-20  border-white	 rounded-large mb-5">
