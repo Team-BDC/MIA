@@ -40,16 +40,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',  # restframework
-    'knox',            # knox
-    'corsheaders',     # cors. api는 3000 포트, 장고는 8000포트에 있음
-    'drf_yasg',        # swagger
-    'mia',             # 장고 메인 앱
-    'accounts',        # 회원가입, 로그인 
+    'rest_framework',      # restframework
+    'django_prometheus',   # prometheus
+    'knox',                # knox
+    'corsheaders',         # cors. api는 3000 포트, 장고는 8000포트에 있음
+    'drf_yasg',            # swagger
+    'mia',                 # 장고 메인 앱
+    'accounts',            # 회원가입, 로그인 
 ]
 
 MIDDLEWARE = [
-    #cors. api는 3000 포트, 장고는 8000포트에 있음
+    # 모니터링 : before prometheus
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',
+    # cors. api는 3000 포트, 장고는 8000포트에 있음
     'corsheaders.middleware.CorsMiddleware',
     # 생성시 기본으로 있는 미들웨어들
     'django.middleware.security.SecurityMiddleware',
@@ -59,6 +62,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 모니터링 : after prometheus
+    'django_prometheus.middleware.PrometheusAfterMiddleware',
 ]
 
 ROOT_URLCONF = 'projectMIA.urls'
@@ -102,34 +107,15 @@ WSGI_APPLICATION = 'projectMIA.wsgi.application'
 #docker아님
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        # 'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django_prometheus.db.backends.mysql',
         'NAME': 'miadb',
         'USER' : 'mia',
         'PASSWORD' : '12344321',
         'HOST' : 'localhost',
-        'PORT' : '3306'
+        'PORT' : '3306',
     },
-
-    'OPTIONS': {
-        "init_command": "SET foreign_key_checks = 0;",
-    }
 }
-
-
-# DRF settings
-# REST_FRAMEWORK = {
-#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-#     'PAGE_SIZE': 10,
-#     'DEFAULT_PERMISSION_CLASSES': (
-#         'rest_framework.permissions.IsAuthenticated',
-#     ),
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-#         'rest_framework.authentication.SessionAuthentication',
-#         'rest_framework.authentication.BasicAuthentication',
-#         'knox.auth.TokenAuthentication',
-#     ],
-# }
 
 
 REST_FRAMEWORK = {
@@ -137,40 +123,6 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 100,
     "DEFAULT_AUTHENTICATION_CLASSES": ("knox.auth.TokenAuthentication",),
 }
-
-
-# JWT settings 
-JWT_AUTH = {
-    'JWT_SECRET_KEY': SECRET_KEY,
-    'JWT_ALGORITHM': 'HS256',
-    'JWT_VERIFY_EXPIRATION' : True,
-    'JWT_ALLOW_REFRESH': True,
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=30),
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(hours=1),
-
-    'JWT_ENCODE_HANDLER': 'rest_framework_jwt.utils.jwt_encode_handler',
-    'JWT_DECODE_HANDLER': 'rest_framework_jwt.utils.jwt_decode_handler',
-    'JWT_PAYLOAD_HANDLER': 'rest_framework_jwt.utils.jwt_payload_handler',
-    'JWT_PAYLOAD_GET_USER_ID_HANDLER': 'rest_framework_jwt.utils.jwt_get_user_id_from_payload_handler',
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'rest_framework_jwt.utils.jwt_response_payload_handler',
-    # 'JWT_RESPONSE_PAYLOAD_HANDLER': 'projectMIA.settings.jwt_response_payload_handler',
-
-    'JWT_AUTH_HEADER_PREFIX': 'JWT',
-    'JWT_AUTH_COOKIE': None,
-}
-
-# def jwt_response_payload_handler(token, user=None, request=None):
-
-#     response = {
-#         'token': token,
-#         'user': {
-#             'user_id': user.user_id,
-#             'user_name': user.user_username,
-#             'user_email': user.user_email,
-#         }
-#     }
-
-#     return response
 
 
 # Password validation

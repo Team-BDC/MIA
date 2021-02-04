@@ -7,7 +7,6 @@ from rest_framework.decorators import api_view, permission_classes, authenticati
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.views import APIView
 from rest_framework.response import Response
-# from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from rest_framework import permissions, status, mixins, viewsets, generics
 
 from .serializers import *
@@ -16,18 +15,6 @@ from mia.models import *
 from knox.models import AuthToken
 
 # User = get_user_model()
-
-
-# Custom ViewSet - create, list, retrive, update, destroy from GenericViewSet
-class UserViewSet(mixins.CreateModelMixin,
-                  mixins.ListModelMixin,
-                  mixins.RetrieveModelMixin,
-                  mixins.UpdateModelMixin,
-                  mixins.DestroyModelMixin,
-                  viewsets.GenericViewSet):
-    queryset = AuthUser.objects.filter(is_active=True)
-    serializer_class = UserSerializer
-
 
 class RegistrationAPI(generics.GenericAPIView):
     serializer_class = CreateUserSerializer
