@@ -1,11 +1,11 @@
 import React from "react";
 import AuthContainer from "../../containers/AuthContainer";
 
-const Auth = ({ match }) => {
-  const { kind } = match.params;
+const Auth = (props) => {
+  const { kind } = props.match.params;
   return (
     <div>
-      <AuthContainer kind={kind} />
+      <AuthContainer kind={kind} {...props} />
     </div>
   );
 };

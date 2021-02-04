@@ -74,19 +74,31 @@ function Test() {
   };
 
   return (
-    <div>
-      <center>
-        <p>{parsedUserInfo.username}의 갤러리 입니다.</p>
-      </center>
-      <GlobalStyle />
-      <WrapperImages>{data}</WrapperImages>
+
+    <div className="grid grid-cols-1 gap-3 place-content-center bg-yellow-300 h-full justify-center">
+
+      <div className="flex">
+      {/* <center className="flex justify-center m-3">  */}
+        <p className="light_font text-xl justify-center">{parsedUserInfo.username}의 갤러리 입니다.</p>
+      {/* </center> */}
+      </div>
+
+      <div className="flex justify-center"> 
+        <GlobalStyle />
+        <WrapperImages>{data}</WrapperImages>
+      </div>
+      <div className="flex justify-center">
+
+    
       <ReactPaginate
         previousLabel={"prev"}
+        previousClassName="light_font h-full text-yellow-300 hover:text-white"
         nextLabel={"next"}
+        nextClassName="light_font text-yellow-300 hover:text-white"
         breakLabel={"..."}
-        breakClassName={"break-me"}
         // 총 페이지 개수
         pageCount={pageCount}
+        pageClassName="light_font text-yellow-300 hover:text-white"
         // 여백 페이지 개수
         marginPagesDisplayed={1}
         // 페이지 범위
@@ -95,8 +107,13 @@ function Test() {
         containerClassName={"pagination"}
         subContainerClassName={"pages pagination"}
         activeClassName={"active"}
+        
       />
+      </div>
+
     </div>
+
+    
   );
 }
 

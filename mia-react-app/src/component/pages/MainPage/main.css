@@ -1,10 +1,48 @@
 /* main.js */
 @import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oregano&display=swap');
+
+@font-face {
+    font-family: 'NEXEN_TIRE_Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/NEXEN_TIRE_Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Broadcast Matter Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Broadcast Matter Regular'), url('Broadcast_Matter.woff') format('woff');
+    }
+
+@font-face {
+     font-family: 'GmarketSansLight';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+    }
+
+
+/* Me In Animation */
+.main_font{
+    /* font-family: 'Permanent Marker', cursive; */
+    /* font-family: 'Architects Daughter', cursive; */
+    /* font-family: 'Oregano', cursive; */
+    /* font-family: 'NEXEN_TIRE_Bold'; */
+    font-family: 'Broadcast Matter Regular';
+}
 
 .font{
  /*   font-family: 'Yusei Magic', sans-serif;*/
-    font-family: 'Work Sans', sans-serif;
+    /* font-family: 'Work Sans', sans-serif; */
+    font-family: 'NEXEN_TIRE_Bold';
+}
+
+.light_font{
+    font-family: 'GmarketSansLight';
 }
 
 .main{
@@ -13,6 +51,7 @@
 
 .animeImage {
     text-align: center;
+    align-self: center;
 }
 
 .animeImage img{

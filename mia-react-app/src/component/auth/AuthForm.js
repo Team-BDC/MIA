@@ -61,15 +61,12 @@ const AuthForm = ({
           onKeyPress={handleKeyPress}
         />
       </div>
-      {kind === "register" ? (
-        <SmallButton onClick={onRegister} className={cx("auth-button")}>
-          {kind.toUpperCase()}
-        </SmallButton>
-      ) : (
-        <SmallButton onClick={onLogin} className={cx("auth-button")}>
-          {kind.toUpperCase()}
-        </SmallButton>
-      )}
+      <SmallButton
+        onClick={kind === "register" ? onRegister : onLogin}
+        className={cx("auth-button")}
+      >
+        {kind.toUpperCase()}
+      </SmallButton>
       {kind === "register" ? (
         <Link to={`/auth/login`} className={cx("description")}>
           if you already have account...
