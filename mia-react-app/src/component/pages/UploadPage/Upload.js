@@ -5,6 +5,7 @@ import "./Upload.css";
 import { toast } from 'material-react-toastify';
 import 'material-react-toastify/dist/ReactToastify.css';
 
+
 let profile_url = null; //-> axios로 json 형태로 보내기 !~ -> views.py로 ~ -> 사진 url
 let img_name = null; //-> axios로 json 형태로 보내기 !~ -> views.py로 ~ -> 파일 저장할 때 사용
 
@@ -17,6 +18,7 @@ class Upload extends Component {
       previewURL: "",
       img_name: "",
       uploadSuccess: false,
+      loading:false,
     };
   }
 
@@ -31,6 +33,7 @@ class Upload extends Component {
       profile_url: profile_url, //url
       img_name: img_name, //파일 이름
     };
+    this.setState({...this.state,loading:true});
     axios
       .post(`http://localhost:8000/api/v1/mia/model/`, JSON.stringify(data), {
         //api 이 형태로 만들어서 보냄
@@ -107,7 +110,13 @@ class Upload extends Component {
         <div className="filebox flex flex-col justify-center items-center w-full h-full justify-items-center">
           <div className="w-2/5 h-2/3 flex justify-center items-center flex-col bg-white border-20  border-white	 rounded-large mb-5">
             {this.state.previewURL ? (
-              <img src={this.state.previewURL} alt="error"></img>
+            <div className=" h-auto w-full">
+              <div className="relative w-full h-full flex justify-center items-center">
+              {this.state.loading && <div  className="bg-black bg-opacity-50  flex justify-center items-center z-50" ><div className="absolute loader top-50 left-20 z-50 ease-linear rounded-full border-20 border-t-20 border-yellow-100 h-44 w-44"></div></div>}
+              <img src={this.state.previewURL} alt="error" />
+              </div>
+     
+</div>
             ) : (
               <>
                 <img

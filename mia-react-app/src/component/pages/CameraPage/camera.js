@@ -41,7 +41,7 @@ function Camera(props) {
     const webcamRef = React.useRef(null);
     const [imgSrc, setImgSrc] = React.useState(null);
     const [isVideo, setVideo] = useState(true);
-    const [values, setValues] = useState({ uploadSuccess: false, result: "" });
+    const [values, setValues] = useState({ uploadSuccess: false, result: "",loading :false });
     // const [uploadSuccess, setUploadSuccess] = useState(false);
     // const [result, setResult] = useState("");
 
@@ -58,6 +58,10 @@ function Camera(props) {
         profile_url: imgSrc, //url
         img_name: `userImg.jpg`, //파일 이름
       };
+      setValues({
+        ...values,
+        loading:true,
+      });
       axios
         .post(`http://localhost:8000/api/v1/mia/model/`, JSON.stringify(data), {
           //api 이 형태로 만들어서 보냄
@@ -116,7 +120,12 @@ function Camera(props) {
           )}
         
           {imgSrc && !isVideo && (
-            <img src={imgSrc} className="w-3/5 h-auto" id="capture" />
+             <div className=" h-auto w-full">
+             <div className="relative w-full h-full flex justify-center items-center">
+             {values.loading && <div  className="bg-black bg-opacity-50  flex justify-center items-center z-50" ><div className="absolute loader top-50 left-20 z-50 ease-linear rounded-full border-20 border-t-20 border-yellow-100 h-44 w-44"></div></div>}
+             <img src={imgSrc} className="w-3/5 h-auto" id="capture" />
+             </div>
+</div>
           )}
       </div>
   
