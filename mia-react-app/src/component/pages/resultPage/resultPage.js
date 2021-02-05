@@ -68,14 +68,7 @@ function Result(props) {
       })
       .catch((err) => {
         console.log(err);
-        toast.error("❕❕ 저장 실패", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
+   
       });
   }
 

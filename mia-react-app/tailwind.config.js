@@ -19,7 +19,14 @@ module.exports = {
       full: "9999px",
       large: "20px",
     },
-    extend: {},
+    extend: {
+      width: {
+     
+        '6/7': '85.7142857%',
+        '95':'95%',
+        '90':'90%',
+      }
+    },
   },
   variants: {
     extend: {},
